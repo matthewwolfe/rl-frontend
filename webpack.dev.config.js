@@ -8,7 +8,7 @@ module.exports = {
     entry: [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
-        './application/core/index.js'
+        './index.js'
     ],
     output: {
         path: path.join(__dirname, 'static'),
