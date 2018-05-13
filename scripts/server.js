@@ -20,14 +20,10 @@ app.get('/css/*.css', (req, res) => {
     res.sendFile(path.join(process.cwd(), `static/css/${req.params[0]}.css`));
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(process.cwd(), 'static/index.html'));
-});
-
-app.listen(3000, (err) => {
+app.listen(4000, (err) => {
     if (err) {
         return console.error(err);
     }
 
-    console.log('Listening at http://localhost:3000/');
+    console.log('Listening at http://localhost:4000/');
 });
