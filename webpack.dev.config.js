@@ -7,12 +7,12 @@ module.exports = {
     devtool: 'eval',
     entry: [
         'react-hot-loader/patch',
-        'webpack-hot-middleware/client',
-        './index.js'
+        'webpack-hot-middleware/client?path=http://localhost:4000/__webpack_hmr',
+        './application/entry/index.js'
     ],
     output: {
         path: path.join(__dirname, 'static'),
-        publicPath: '/',
+        publicPath: 'http://localhost:4000/js/',
         filename: 'bundle.js'
     },
     plugins: [
@@ -38,7 +38,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 loader: 'babel-loader',
-                include: path.join(__dirname, 'application')
+                include: path.resolve('./')
             },
             {
                 test: /\.css$/,

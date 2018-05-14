@@ -8,6 +8,12 @@ const config = require('../webpack.dev.config');
 const app = express();
 const compiler = webpack(config);
 
+app.all('/*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
+});
+
 app.use(devMiddleware(compiler, {
     quiet: true,
     publicPath: config.output.publicPath,
