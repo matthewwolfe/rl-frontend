@@ -4,30 +4,32 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 
-function ColorSelect({className, colors, onChange, value}) {
+function CertificationSelect({certifications, className, onChange, value}) {
     return (
         <Select
             className={className}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
-            options={colors.selectOptions}
-            placeholder="Select a paint"
+            options={certifications.selectOptions}
             style={{minWidth: '200px'}}
             value={value} />
     );
 }
 
-ColorSelect.defaultProps = {
-    value: 0
+CertificationSelect.defaultProps = {
+    className: '',
+    value: ''
 };
 
-ColorSelect.propTypes = {
+CertificationSelect.propTypes = {
+    className: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
     value: PropTypes.number.isRequired
 };
 
 function mapStoresToProps(stores) {
     return {
-        colors: stores.application.colors
+        certifications: stores.application.certifications
     };
 }
 
-export default inject(mapStoresToProps)(observer(ColorSelect));
+export default inject(mapStoresToProps)(observer(CertificationSelect));
