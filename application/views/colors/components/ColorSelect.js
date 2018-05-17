@@ -4,15 +4,17 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 
-function ColorSelect({className, colors, onChange, value}) {
+function ColorSelect({colors, onChange, value}) {
     return (
         <Select
-            className={className}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={colors.selectOptions}
-            placeholder="Select a paint"
-            style={{minWidth: '200px'}}
-            value={value} />
+            styles={{
+                input: () => ({
+                    width: 120
+                })
+            }}
+            value={colors.selectOptions.filter(option => option.value === value)} />
     );
 }
 

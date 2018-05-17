@@ -5,7 +5,7 @@ import { SearchFilters } from 'views/trading';
 
 function Trading() {
     return (
-        <Container>
+        <Container fluid>
             <SearchFilters />
         </Container>
     );

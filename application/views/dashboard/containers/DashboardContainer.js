@@ -4,7 +4,6 @@ import { Dashboard } from 'views/dashboard';
 
 
 function DashboardContainer() {
-    console.log('dashboard');
     return provide({})(Dashboard);
 }
 

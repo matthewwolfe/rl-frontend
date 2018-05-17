@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Card, CardBody, Col, Form, Input, Label } from 'reactstrap';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
+import { ItemSelect } from 'views/items';
 
 
 const INITIAL_STATE = {
@@ -69,11 +70,18 @@ class SearchFilters extends Component {
                         </Input>
 
                         <Label className="ml-2 mr-2">
+                            Item
+                        </Label>
+
+                        <ItemSelect
+                            onChange={id => this.setState({item: id})}
+                            value={this.state.item} />
+
+                        <Label className="ml-2 mr-2">
                             Paint
                         </Label>
 
                         <ColorSelect
-                            className="mr-2"
                             onChange={id => this.setState({color: id})}
                             value={this.state.color} />
 
@@ -82,7 +90,6 @@ class SearchFilters extends Component {
                         </Label>
 
                         <CertificationSelect
-                            className="mr-2"
                             onChange={id => this.setState({certification: id})}
                             value={this.state.certification} />
                     </Form>

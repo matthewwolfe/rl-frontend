@@ -4,24 +4,25 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 
-function CertificationSelect({certifications, className, onChange, value}) {
+function CertificationSelect({certifications, onChange, value}) {
     return (
         <Select
-            className={className}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={certifications.selectOptions}
-            style={{minWidth: '200px'}}
-            value={value} />
+            styles={{
+                input: () => ({
+                    width: 160
+                })
+            }}
+            value={certifications.selectOptions.filter(option => option.value === value)} />
     );
 }
 
 CertificationSelect.defaultProps = {
-    className: '',
-    value: ''
+    value: 0
 };
 
 CertificationSelect.propTypes = {
-    className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.number.isRequired
 };
