@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavItem, NavLink, NavbarToggler } from 'reactstrap';
+import { logout } from 'libraries/session';
 
 
 @inject('application')
@@ -77,6 +78,17 @@ class TopBar extends Component {
                                 tag={Link}
                                 to="/settings">
                                 Settings
+                            </NavLink>
+                        </NavItem>
+
+                        <NavItem>
+                            <NavLink
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    logout();
+                                }}>
+                                Log out
                             </NavLink>
                         </NavItem>
                     </Nav>

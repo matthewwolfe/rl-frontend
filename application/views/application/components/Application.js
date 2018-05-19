@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { isLoggedIn } from 'libraries/session';
 import { SplashScreen, TopBar } from 'views/application';
 import { DashboardContainer } from 'views/dashboard';
