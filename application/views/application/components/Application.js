@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { isLoggedIn } from 'libraries/session';
 import { SplashScreen, TopBar } from 'views/application';
 import { DashboardContainer } from 'views/dashboard';
-import { TradingContainer } from 'views/trading';
+import { TradingBuildContainer, TradingContainer } from 'views/trading';
 
 
 @inject('application')
@@ -37,10 +37,11 @@ class Application extends Component {
                     <Switch>
                         <Route path="/" exact component={DashboardContainer} />
                         <Route path="/trading" exact component={TradingContainer} />
+                        <Route path="/trading/build" exact component={TradingBuildContainer} />
                     </Switch>
                 </div>
             </div>
-        )
+        );
     }
 }
 

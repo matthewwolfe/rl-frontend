@@ -1,0 +1,13 @@
+.trade-item {
+    display: inline-block;
+    margin: 0.5em;
+    width: calc(25% - 1em);
+    height: 6em;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    border-radius: 0.1em;
+}
+
+.trading-build textarea {
+    resize: none;
+}

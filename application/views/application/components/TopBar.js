@@ -60,6 +60,14 @@ class TopBar extends Component {
                         <NavItem>
                             <NavLink
                                 tag={Link}
+                                to="/trading/build">
+                                New Trade
+                            </NavLink>
+                        </NavItem>
+
+                        <NavItem>
+                            <NavLink
+                                tag={Link}
                                 to="/my_trades">
                                 My Trades
                             </NavLink>
