@@ -1,20 +1,63 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, Col, Form, Input, Label } from 'reactstrap';
+import autobind from 'autobind-decorator';
+import { Button, Card, CardBody, Col, Form, Input, Label, Table } from 'reactstrap';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
 import { ItemSelect } from 'views/items';
+import { SearchFilter } from 'views/trading';
 
 
 const INITIAL_STATE = {
-    certification: 0,
-    color: 0,
-    item: 0,
-    platform: ''
+    searchFilters: [],
+    form: {
+        certificationId: 0,
+        colorId: 0,
+        itemId: 0,
+        platform: ''
+    }
 };
 
 class SearchFilters extends Component {
 
-    state = Object.assign({}, INITIAL_STATE);
+    constructor(props) {
+        super(props);
+
+        this.state = Object.assign({}, INITIAL_STATE);
+    }
+
+    get form() {
+        return this.state.form;
+    }
+
+    get isFormEmpty() {
+        for (const property in this.form) {
+            if (this.form[property] !== INITIAL_STATE.form[property]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @autobind
+    addSearchItem() {
+        this.setState({
+            searchFilters: [...this.state.searchFilters, Object.assign({}, this.form)],
+            form: Object.assign({}, INITIAL_STATE.form)
+        });
+    }
+
+    @autobind
+    removeSearchItem(index) {
+        this.setState({
+            searchFilters: [...this.state.searchFilters.slice(0, index), ...this.state.searchFilters.slice(index + 1)]
+        });
+    }
+
+    @autobind
+    updateForm(newState) {
+        this.setState({form: {...this.state.form, ...newState}});
+    }
 
     render() {
         return (
@@ -44,9 +87,9 @@ class SearchFilters extends Component {
 
                         <Input
                             className="mr-2"
-                            onChange={e => this.setState({platform: e.target.value})}
+                            onChange={e => this.updateForm({platform: e.target.value})}
                             type="select"
-                            value={this.state.platform}>
+                            value={this.form.platform}>
 
                             <option value="">
                                 All
@@ -74,25 +117,56 @@ class SearchFilters extends Component {
                         </Label>
 
                         <ItemSelect
-                            onChange={id => this.setState({item: id})}
-                            value={this.state.item} />
+                            onChange={id => this.updateForm({itemId: id})}
+                            value={this.form.itemId} />
 
                         <Label className="ml-2 mr-2">
                             Paint
                         </Label>
 
                         <ColorSelect
-                            onChange={id => this.setState({color: id})}
-                            value={this.state.color} />
+                            onChange={id => this.updateForm({colorId: id})}
+                            value={this.form.colorId} />
 
                         <Label className="ml-2 mr-2">
                             Certification
                         </Label>
 
                         <CertificationSelect
-                            onChange={id => this.setState({certification: id})}
-                            value={this.state.certification} />
+                            onChange={id => this.updateForm({certificationId: id})}
+                            value={this.form.certificationId} />
+
+                        <Button
+                            className="ml-2"
+                            color="success"
+                            disabled={this.isFormEmpty}
+                            onClick={() => this.addSearchItem()}>
+                            Add Filter
+                        </Button>
                     </Form>
+
+                    {this.state.searchFilters.length > 0 &&
+                        <Table striped>
+                            <thead>
+                                <tr>
+                                    <th>Platform</th>
+                                    <th>Item</th>
+                                    <th>Paint</th>
+                                    <th>Certification</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {this.state.searchFilters.map((searchFilter, index) => (
+                                    <SearchFilter
+                                        key={`search-filter-${index}`}
+                                        removeSearchItem={() => this.removeSearchItem(index)}
+                                        searchFilter={searchFilter} />
+                                ))}
+                            </tbody>
+                        </Table>
+                    }
                 </CardBody>
             </Card>
         );
