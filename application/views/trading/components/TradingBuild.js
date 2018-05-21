@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardTitle, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
+import { PlatformSelect } from 'views/platforms';
 import { TradeItemsDisplay } from 'views/trading';
 
 
@@ -11,6 +12,7 @@ class TradingBuild extends Component {
         this.state = {
             description: '',
             haveItems: [],
+            platform: '',
             wantItems: []
         };
     }
@@ -46,7 +48,7 @@ class TradingBuild extends Component {
                     </Col>
                 </Row>
 
-                <Row className="mb-5">
+                <Row className="mb-3">
                     <Col md={12}>
                         <Card>
                             <CardBody>
@@ -74,12 +76,23 @@ class TradingBuild extends Component {
                                         Platform
                                     </Label>
 
-                                    <Col md={10}>
-                                        
+                                    <Col md={3}>
+                                        <PlatformSelect
+                                            onChange={platform => this.setState({platform: platform})}
+                                            value={this.state.platform} />
                                     </Col>
                                 </FormGroup>
                             </CardBody>
                         </Card>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col md={12}>
+                        <Button
+                            color="success">
+                            Add Trade
+                        </Button>
                     </Col>
                 </Row>
             </Container>
