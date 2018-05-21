@@ -16,6 +16,7 @@ function ItemSelect({items, itemTypes, onChange, value}) {
 
     return (
         <Select
+            isClearable={true}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={options}
             styles={{

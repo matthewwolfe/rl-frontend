@@ -1,4 +1,5 @@
 .trade-item {
+    cursor: pointer;
     display: inline-block;
     margin: 0.5em;
     width: calc(25% - 1em);

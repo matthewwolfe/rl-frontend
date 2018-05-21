@@ -7,6 +7,7 @@ import Select from 'react-select';
 function ColorSelect({colors, onChange, value}) {
     return (
         <Select
+            isClearable={true}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={colors.selectOptions}
             styles={{

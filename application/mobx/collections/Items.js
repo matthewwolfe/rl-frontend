@@ -17,6 +17,10 @@ class Items extends ObjectCollection {
             value: item.id
         }));
     }
+
+    byType(itemTypeId) {
+        return this.values().filter(item => itemTypeId === item.itemTypeId);
+    }
 }
 
 export default Items;

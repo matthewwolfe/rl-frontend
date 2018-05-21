@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { isLoggedIn } from 'libraries/session';
 import { SplashScreen, TopBar } from 'views/application';
 import { DashboardContainer } from 'views/dashboard';
+import { ItemDatabasePage } from 'views/items';
 import { TradingBuildContainer, TradingContainer } from 'views/trading';
 
 
@@ -36,6 +37,7 @@ class Application extends Component {
                 <div className="mt-4">
                     <Switch>
                         <Route path="/" exact component={DashboardContainer} />
+                        <Route path="/items" exact component={ItemDatabasePage} />
                         <Route path="/trading" exact component={TradingContainer} />
                         <Route path="/trading/build" exact component={TradingBuildContainer} />
                     </Switch>

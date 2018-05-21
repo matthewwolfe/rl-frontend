@@ -3,6 +3,8 @@ import Application from './components/Application';
 import SplashScreen from './components/SplashScreen';
 import TopBar from './components/TopBar';
 
+import './styles.css';
+
 export {
     ApplicationContainer,
     Application,

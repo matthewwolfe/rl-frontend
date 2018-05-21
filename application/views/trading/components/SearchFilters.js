@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
-import { Button, Card, CardBody, Col, Form, Input, Label, Table } from 'reactstrap';
+import { Button, Card, CardBody, Col, Form, Label, Table } from 'reactstrap';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
 import { ItemSelect } from 'views/items';
+import { PlatformSelect } from 'views/platforms';
 import { SearchFilter } from 'views/trading';
 
 
@@ -85,32 +86,10 @@ class SearchFilters extends Component {
                             Platform
                         </Label>
 
-                        <Input
+                        <PlatformSelect
                             className="mr-2"
-                            onChange={e => this.updateForm({platform: e.target.value})}
-                            type="select"
-                            value={this.form.platform}>
-
-                            <option value="">
-                                All
-                            </option>
-
-                            <option value="pc">
-                                PC
-                            </option>
-
-                            <option value="ps4">
-                                PS4
-                            </option>
-
-                            <option value="switch">
-                                Switch
-                            </option>
-
-                            <option value="xbox">
-                                Xbox
-                            </option>
-                        </Input>
+                            onChange={platform => this.updateForm({platform: platform})}
+                            value={this.form.platform} />
 
                         <Label className="ml-2 mr-2">
                             Item

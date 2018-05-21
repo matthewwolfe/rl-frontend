@@ -23,7 +23,7 @@ function SearchFilter({certifications, colors, items, removeSearchItem, searchFi
             <td style={{width: '200px'}}>
                 <Button
                     className="float-right"
-                    color="dark"
+                    color="secondary"
                     onClick={() => removeSearchItem()}>
                     Remove Filter
                 </Button>

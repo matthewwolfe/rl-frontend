@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, Col, Container, Input, Row } from 'reactstrap';
+import { Card, CardBody, CardTitle, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
 import { TradeItemsDisplay } from 'views/trading';
 
 
@@ -51,15 +51,33 @@ class TradingBuild extends Component {
                         <Card>
                             <CardBody>
                                 <CardTitle>
-                                    Description
+                                    Details
                                 </CardTitle>
 
-                                <Input
-                                    className="w-100"
-                                    onChange={e => this.setState({description: e.target.value})}
-                                    rows="10"
-                                    type="textarea"
-                                    value={this.state.description} />
+                                <FormGroup row>
+                                    <Label md={2}>
+                                        Description
+                                    </Label>
+
+                                    <Col md={10}>
+                                        <Input
+                                            className="w-100"
+                                            onChange={e => this.setState({description: e.target.value})}
+                                            rows="10"
+                                            type="textarea"
+                                            value={this.state.description} />
+                                    </Col>
+                                </FormGroup>
+
+                                <FormGroup row>
+                                    <Label md={2}>
+                                        Platform
+                                    </Label>
+
+                                    <Col md={10}>
+                                        
+                                    </Col>
+                                </FormGroup>
                             </CardBody>
                         </Card>
                     </Col>
