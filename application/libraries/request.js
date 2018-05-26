@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken } from 'libraries/session';
+import { getToken, logout } from 'libraries/session';
 
 
 const cancelToken = axios.CancelToken.source();
@@ -51,6 +51,9 @@ async function sendRequest(config) {
         }
         else if (response.status === 400) {
             throw response.data.errors;
+        }
+        else if (response.status === 401) {
+            logout();
         }
     }
     catch (error) {

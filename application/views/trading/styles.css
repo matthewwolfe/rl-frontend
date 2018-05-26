@@ -1,14 +1,43 @@
+.trade-items-display .row {
+    margin: -0.25em;
+}
+.trade-items-display .row > div {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    margin-bottom: 0.5em;
+}
 .trade-item {
     cursor: pointer;
-    display: inline-block;
-    margin: 0.5em;
-    width: calc(25% - 1em);
-    height: 6em;
+    height: 9em;
     border: 1px solid #ccc;
     background-color: #eee;
     border-radius: 0.1em;
 }
-
+.trade-item.has-item {
+    background-color: #000;
+}
+.trade-item img {
+    max-width: 75%;
+    max-height: 50%;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+.trade-item p {
+    color: #fff;
+}
+.trade-item .item {
+    position: relative;
+}
+.trade-item .item .item-name {
+    font-weight: 200;
+}
+.trade-item .item .certification {
+    font-size: 0.6em;
+    font-weight: 200;
+    text-transform: uppercase;
+}
 .trading-build textarea {
     resize: none;
 }

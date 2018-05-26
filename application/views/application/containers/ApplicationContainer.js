@@ -1,7 +1,7 @@
 import React from 'react';
 import { action, observable } from 'mobx';
 import { request } from 'libraries/request';
-import { Certifications, Colors, Items, ItemTypes, Rarities } from 'mobx/collections';
+import { Certifications, Colors, Crates, Items, ItemTypes, Rarities } from 'mobx/collections';
 import { Section } from 'mobx/classes';
 import { User } from 'mobx/models';
 import { provide } from 'mobx/utils';
@@ -12,6 +12,7 @@ class ApplicationStore extends Section {
 
     @observable certifications = new Certifications();
     @observable colors = new Colors();
+    @observable crates = new Crates();
     @observable items = new Items();
     @observable itemTypes = new ItemTypes();
     @observable lang = 'english';
@@ -22,12 +23,13 @@ class ApplicationStore extends Section {
     async initialize() {
         this.set({loading: true});
 
-        const { certifications, colors, items, itemTypes, rarities, user } = await request.get({
+        const { certifications, colors, crates, items, itemTypes, rarities, user } = await request.get({
             url: '/initialize'
         });
 
         this.certifications.fromObject(certifications);
         this.colors.fromObject(colors);
+        this.crates.fromObject(crates);
         this.items.fromObject(items);
         this.itemTypes.fromObject(itemTypes);
         this.rarities.fromObject(rarities);

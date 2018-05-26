@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
+import autobind from 'autobind-decorator';
 import { Button, Col, Form, FormGroup, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
+import { CrateSelect } from 'views/crates';
 import { ItemSelect } from 'views/items';
 
 
 class NewTradeItemModal extends Component {
 
+    INITIAL_STATE = {
+        certificationId: 0,
+        colorId: 0,
+        crateId: 0,
+        itemId: 0,
+    };
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            certificationId: 0,
-            colorId: 0,
-            crateId: 0,
-            itemId: 0,
-        };
+        this.state = Object.assign({}, this.INITIAL_STATE);
+    }
+
+    @autobind
+    reset() {
+        this.setState(Object.assign({}, this.INITIAL_STATE));
+    }
+
+    @autobind
+    save() {
+        this.props.onSave(this.state);
+        this.props.toggle();
+        this.reset();
     }
 
     render() {
@@ -72,6 +88,12 @@ class NewTradeItemModal extends Component {
                             <Label md={3}>
                                 Crate
                             </Label>
+
+                            <Col md={9}>
+                                <CrateSelect
+                                    onChange={crateId => this.setState({crateId: crateId})}
+                                    value={this.state.crateId} />
+                            </Col>
                         </FormGroup>
                     </Form>
                 </ModalBody>
