@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
+import PropTypes from 'prop-types';
+import { PropTypes as MobxPropTypes } from 'mobx-react';
 import { Button, Col, Form, FormGroup, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
@@ -7,7 +9,7 @@ import { CrateSelect } from 'views/crates';
 import { ItemSelect } from 'views/items';
 
 
-class NewTradeItemModal extends Component {
+class TradeItemModal extends Component {
 
     INITIAL_STATE = {
         certificationId: 0,
@@ -20,6 +22,17 @@ class NewTradeItemModal extends Component {
         super(props);
 
         this.state = Object.assign({}, this.INITIAL_STATE);
+    }
+
+    componentWillReceiveProps({isOpen, item}) {
+        if (!this.props.isOpen && isOpen && item) {
+            this.setState({
+                certificationId: item.certificationId,
+                colorId: item.colorId,
+                crateId: item.crateId,
+                itemId: item.itemId
+            });
+        }
     }
 
     @autobind
@@ -114,7 +127,13 @@ class NewTradeItemModal extends Component {
             </Modal>
         );
     }
-
 }
 
-export default NewTradeItemModal;
+TradeItemModal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    item: MobxPropTypes.objectOrObservableObject,
+    onSave: PropTypes.func.isRequired,
+    toggle: PropTypes.func.isRequired
+};
+
+export default TradeItemModal;

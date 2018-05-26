@@ -4,7 +4,7 @@ import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { Col } from 'reactstrap';
 import { titleCaseToDashes } from 'libraries/string';
-import { NewTradeItemModal } from 'views/trading';
+import { TradeItemModal } from 'views/trading';
 
 
 class TradeItem extends Component {
@@ -55,8 +55,9 @@ class TradeItem extends Component {
                     }
 
                     {editable &&
-                        <NewTradeItemModal
+                        <TradeItemModal
                             isOpen={this.state.isOpen}
+                            item={item}
                             onSave={this.props.onAddItem}
                             toggle={this.toggleModal} />
                     }

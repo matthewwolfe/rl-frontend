@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Button, Card, CardBody, CardTitle, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
+import { array } from 'libraries/array';
 import { PlatformSelect } from 'views/platforms';
 import { TradeItemsDisplay } from 'views/trading';
 
@@ -24,7 +25,9 @@ function TradingBuild({tradingBuildStore}) {
                             <TradeItemsDisplay
                                 editable
                                 items={form.data.haveItems}
-                                onAddItem={item => form.update({haveItems: [...form.data.haveItems, item]})} />
+                                onAddItem={(item, index) => {
+                                    form.update({haveItems: array.addAtIndex(form.data.haveItems, item, index)});
+                                }} />
                         </CardBody>
                     </Card>
                 </Col>
@@ -39,7 +42,9 @@ function TradingBuild({tradingBuildStore}) {
                             <TradeItemsDisplay
                                 editable
                                 items={form.data.wantItems}
-                                onAddItem={item => form.update({wantItems: [...form.data.wantItems, item]})} />
+                                onAddItem={(item, index) => {
+                                    form.update({wantItems: array.addAtIndex(form.data.wantItems, item, index)});
+                                }} />
                         </CardBody>
                     </Card>
                 </Col>

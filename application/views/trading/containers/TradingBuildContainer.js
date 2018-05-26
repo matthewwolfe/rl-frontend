@@ -15,14 +15,11 @@ class TradingBuildStore extends Store {
 
         this.form = new Form({
             description: '',
-            haveItems: [],
+            haveItems: new Array(24),
             platform: '',
-            wantItems: []
+            wantItems: new Array(24)
         });
     }
-
-    @observable haveItems = [];
-    @observable wantItems = [];
 }
 
 function TradingBuildContainer() {

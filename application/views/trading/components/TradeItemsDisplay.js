@@ -15,7 +15,7 @@ function TradeItemsDisplay({editable, items, onAddItem}) {
                         key={`trade-item-${index}`}
                         editable={editable}
                         item={items.length > index ? items[index] : undefined}
-                        onAddItem={onAddItem} />
+                        onAddItem={item => onAddItem(item, index)} />
                 ))}
             </Row>
         </div>
