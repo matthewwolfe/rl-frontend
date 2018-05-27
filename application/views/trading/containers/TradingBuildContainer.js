@@ -1,12 +1,12 @@
 import React from 'react';
-import { observable } from 'mobx';
-import { Form } from 'mobx/classes';
-import { Store } from 'mobx/core';
+import { action, observable } from 'mobx';
+import { request } from 'libraries/request';
+import { Form, Section } from 'mobx/classes';
 import { provide } from 'mobx/utils';
 import { TradingBuild } from 'views/trading';
 
 
-class TradingBuildStore extends Store {
+class TradingBuildStore extends Section {
 
     @observable form;
 
@@ -15,16 +15,55 @@ class TradingBuildStore extends Store {
 
         this.form = new Form({
             description: '',
-            haveItems: new Array(24),
+            haveItems: [],
+            id: 0,
             platform: '',
-            wantItems: new Array(24)
+            wantItems: []
         });
+    }
+
+    @action.bound
+    async initialize(id) {
+        this.set({loading: true});
+
+        try {
+            const { trade, tradeItems } = await request.get({
+                url: '/trades/build',
+                params: {
+                    id: id
+                }
+            });
+        } catch (errors) {
+            // Do something
+        } finally {
+            this.set({loading: false});
+        }
+
+
+    }
+
+    @action.bound
+    async save() {
+        this.set({loading: true});
+
+        try {
+            await request.post({
+                url: '/trades/save',
+                data: this.form.data
+            });
+        }
+        catch (errors) {
+
+        }
+        finally {
+            this.set({loading: false});
+        }
     }
 }
 
 function TradingBuildContainer() {
     return provide({
-        tradingBuildStore: new TradingBuildStore()
+        page: new TradingBuildStore()
     })(TradingBuild);
 }
 

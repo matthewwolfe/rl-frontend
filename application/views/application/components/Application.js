@@ -39,7 +39,7 @@ class Application extends Component {
                         <Route path="/" exact component={DashboardContainer} />
                         <Route path="/items" exact component={ItemDatabasePage} />
                         <Route path="/trading" exact component={TradingContainer} />
-                        <Route path="/trading/build" exact component={TradingBuildContainer} />
+                        <Route path="/trading/build/:id?" component={TradingBuildContainer} />
                     </Switch>
                 </div>
             </div>

@@ -13,7 +13,7 @@ function TradeItemsDisplay({editable, items, onAddItem}) {
                 {range(0, 24).map(index => (
                     <TradeItem
                         key={`trade-item-${index}`}
-                        editable={editable}
+                        editable={editable && items.length >= index}
                         item={items.length > index ? items[index] : undefined}
                         onAddItem={item => onAddItem(item, index)} />
                 ))}

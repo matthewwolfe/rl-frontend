@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
 
 
-function PlatformSelect({className, onChange, value}) {
+function PlatformSelect({className, includeAll, onChange, value}) {
     return (
         <Input
             className={className}
@@ -10,9 +11,11 @@ function PlatformSelect({className, onChange, value}) {
             type="select"
             value={value}>
 
-            <option value="">
-                All
-            </option>
+            {includeAll &&
+                <option value="">
+                    All
+                </option>
+            }
 
             <option value="pc">
                 PC
@@ -32,5 +35,17 @@ function PlatformSelect({className, onChange, value}) {
         </Input>
     );
 }
+
+PlatformSelect.defaultProps = {
+    className: '',
+    includeAll: true
+};
+
+PlatformSelect.propTypes = {
+    className: PropTypes.string,
+    includeAll: PropTypes.bool,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+};
 
 export default PlatformSelect;
