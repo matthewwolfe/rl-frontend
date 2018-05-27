@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Button, Card, CardBody, CardTitle, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
 import { array } from 'libraries/array';
 import { Loader } from 'views/generic/loader';
+import { Response } from 'views/generic/response';
 import { PlatformSelect } from 'views/platforms';
 import { TradeItemsDisplay } from 'views/trading';
 
@@ -21,15 +22,22 @@ class TradingBuild extends Component {
         if (Number.isInteger(id)) {
             props.page.initialize(id);
         }
+        else {
+            props.page.set({loading: false});
+        }
     }
 
     render() {
         const { page } = this.props;
-        const { form } = page;
+        const { form, response } = page;
 
         return (
             <Container className="trading-build">
                 <h1 className="mb-4">New Trade</h1>
+
+                <Response
+                    onHide={page.resetResponse}
+                    response={response} />
 
                 <Loader loading={page.loading}>
                     {() => (
@@ -117,6 +125,7 @@ class TradingBuild extends Component {
                                 <Col md={12}>
                                     <Button
                                         color="success"
+                                        disabled={page.saving}
                                         onClick={() => page.save()}>
                                         Add Trade
                                     </Button>

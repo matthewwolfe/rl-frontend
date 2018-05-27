@@ -1,5 +1,6 @@
 import React from 'react';
 import { action, observable } from 'mobx';
+import { HttpError } from 'errors';
 import { request } from 'libraries/request';
 import { Form, Section } from 'mobx/classes';
 import { provide } from 'mobx/utils';
@@ -33,18 +34,26 @@ class TradingBuildStore extends Section {
                     id: id
                 }
             });
-        } catch (errors) {
-            // Do something
-        } finally {
+
+            this.form.update(trade);
+            this.form.update({
+                haveItems: tradeItems.filter(tradeItem => tradeItem.type === 'have'),
+                wantItems: tradeItems.filter(tradeItem => tradeItem.type === 'want')
+            });
+        }
+        catch (error) {
+            if (error instanceof HttpError) {
+                this.setErrorResponse(error.errors);
+            }
+        }
+        finally {
             this.set({loading: false});
         }
-
-
     }
 
     @action.bound
     async save() {
-        this.set({loading: true});
+        this.set({saving: true});
 
         try {
             await request.post({
@@ -56,7 +65,7 @@ class TradingBuildStore extends Section {
 
         }
         finally {
-            this.set({loading: false});
+            this.set({saving: false});
         }
     }
 }

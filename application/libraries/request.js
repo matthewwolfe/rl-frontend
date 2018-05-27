@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { toJS } from 'mobx';
+import { HttpError } from 'errors';
 import { getToken, logout } from 'libraries/session';
 
 
@@ -25,10 +27,18 @@ function url(url) {
 }
 
 function get(requestConfig) {
+    if (requestConfig.params) {
+        requestConfig.params = toJS(requestConfig.params);
+    }
+
     return sendRequest(createConfig(REQUEST_CONFIG.GET, requestConfig));
 }
 
 function post(requestConfig) {
+    if (requestConfig.data) {
+        requestConfig.data = toJS(requestConfig.data);
+    }
+
     return sendRequest(createConfig(REQUEST_CONFIG.POST, requestConfig));
 }
 
@@ -50,14 +60,19 @@ async function sendRequest(config) {
             return response.data;
         }
         else if (response.status === 400) {
-            throw response.data.errors;
+            throw new HttpError(response.data.errors, response.status);
         }
         else if (response.status === 401) {
             logout();
         }
     }
     catch (error) {
-        throw new CancelledError(error.message);
+        if (axios.isCancel(error)) {
+            throw new CancelledError(error.message);
+        }
+        else {
+            throw error;
+        }
     }
 }
 

@@ -9,6 +9,7 @@ class Section extends Store {
         status: '',
         message: ''
     };
+    @observable saving = false;
 
     @action.bound
     resetResponse() {
