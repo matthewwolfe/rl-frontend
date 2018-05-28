@@ -34,7 +34,7 @@ class LoginStore extends Section {
             window.location.href = '/';
         }
         catch (errors) {
-            this.setErrorResponse(errors);
+            this.setErrorResponse(errors.errors);
         }
         finally {
             this.set({loggingIn: false});

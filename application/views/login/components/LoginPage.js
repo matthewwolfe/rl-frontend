@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Button, Card, CardBody, CardTitle, Col, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Card, CardBody, CardTitle, Col, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import { isLoggedIn } from 'libraries/session';
+import { SubmitButton } from 'views/generic/button';
+import { Response } from 'views/generic/response';
 
 
 @inject('page')
@@ -18,7 +20,7 @@ class LoginPage extends Component {
 
     render() {
         const { page } = this.props;
-        const { form, loggingIn } = page;
+        const { form, loggingIn, response } = page;
 
         return (
             <Container className="login">
@@ -27,6 +29,10 @@ class LoginPage extends Component {
                         <CardTitle className="text-center">
                             Login
                         </CardTitle>
+
+                        <Response
+                            response={response}
+                            onHide={page.resetResponse} />
 
                         <Form>
                             <FormGroup row>
@@ -57,12 +63,12 @@ class LoginPage extends Component {
 
                             <FormGroup row>
                                 <Col md={{offset: 3, size: 7}}>
-                                    <Button
+                                    <SubmitButton
                                         color="primary"
                                         disabled={loggingIn}
-                                        onClick={() => page.login()}>
+                                        onSubmit={() => page.login()}>
                                         Log In
-                                    </Button>
+                                    </SubmitButton>
                                 </Col>
                             </FormGroup>
                         </Form>

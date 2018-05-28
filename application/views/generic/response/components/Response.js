@@ -16,9 +16,9 @@ function Response({className, onHide, response}) {
             className={className}
             color={response.status === 'success' ? 'success' : 'danger'}>
 
-            <span styles={{width: '90%'}}>
-                {response.message}
-            </span>
+            <span
+                dangerouslySetInnerHTML={{__html: renderMessage(response.message)}}
+                styles={{width: '90%'}} />
 
             <Icon
                 className="float-right"
@@ -26,6 +26,14 @@ function Response({className, onHide, response}) {
                 type="x" />
         </Alert>
     );
+}
+
+function renderMessage(message) {
+    if (typeof message !== 'string' && !(message instanceof String)) {
+        return message.join('<br />');
+    }
+
+    return message;
 }
 
 Response.defaultProps = {
