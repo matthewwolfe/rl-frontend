@@ -5,7 +5,8 @@ import { isLoggedIn } from 'libraries/session';
 import { SplashScreen, TopBar } from 'views/application';
 import { DashboardContainer } from 'views/dashboard';
 import { ItemDatabasePage } from 'views/items';
-import { TradingBuildContainer, TradingContainer } from 'views/trading';
+import { SettingsPageContainer } from 'views/settings';
+import { TradingBuildPageContainer, TradingContainer } from 'views/trading';
 
 
 @inject('application')
@@ -38,8 +39,9 @@ class Application extends Component {
                     <Switch>
                         <Route path="/" exact component={DashboardContainer} />
                         <Route path="/items" exact component={ItemDatabasePage} />
+                        <Route path="/settings" exact component={SettingsPageContainer} />
                         <Route path="/trading" exact component={TradingContainer} />
-                        <Route path="/trading/build/:id?" component={TradingBuildContainer} />
+                        <Route path="/trading/build/:id?" component={TradingBuildPageContainer} />
                     </Switch>
                 </div>
             </div>

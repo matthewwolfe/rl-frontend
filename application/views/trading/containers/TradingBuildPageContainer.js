@@ -4,7 +4,7 @@ import { HttpError } from 'errors';
 import { request } from 'libraries/request';
 import { Form, Section } from 'mobx/classes';
 import { provide } from 'mobx/utils';
-import { TradingBuild } from 'views/trading';
+import { TradingBuildPage } from 'views/trading';
 
 
 class TradingBuildStore extends Section {
@@ -80,10 +80,10 @@ class TradingBuildStore extends Section {
     }
 }
 
-function TradingBuildContainer() {
+function TradingBuildPageContainer() {
     return provide({
         page: new TradingBuildStore()
-    })(TradingBuild);
+    })(TradingBuildPage);
 }
 
-export default TradingBuildContainer;
+export default TradingBuildPageContainer;

@@ -39,6 +39,13 @@ class ApplicationStore extends Section {
             user: new User(user)
         });
     }
+
+    @action.bound
+    updateUser(user) {
+        this.set({
+            user: new User(user)
+        });
+    }
 }
 
 const applicationStore = new ApplicationStore();

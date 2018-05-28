@@ -76,14 +76,6 @@ class TopBar extends Component {
                         <NavItem>
                             <NavLink
                                 tag={Link}
-                                to="/profile">
-                                Profile
-                            </NavLink>
-                        </NavItem>
-
-                        <NavItem>
-                            <NavLink
-                                tag={Link}
                                 to="/settings">
                                 Settings
                             </NavLink>

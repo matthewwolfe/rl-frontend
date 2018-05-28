@@ -12,7 +12,7 @@ import { TradeItemsDisplay } from 'views/trading';
 @withRouter
 @inject('page')
 @observer
-class TradingBuild extends Component {
+class TradingBuildPage extends Component {
 
     constructor(props) {
         super(props);
@@ -149,4 +149,4 @@ class TradingBuild extends Component {
     }
 }
 
-export default TradingBuild;
+export default TradingBuildPage;
