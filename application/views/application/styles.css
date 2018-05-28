@@ -1,7 +1,6 @@
 html,body, .container {
     min-width: 1200px;
 }
-
 @media (min-width: 1300px) {
     .container {
         max-width: 1200px;
@@ -15,11 +14,17 @@ html,body, .container {
 .application {
     margin-bottom: 5em;
 }
-
 .col-form-label {
     text-align: right;
 }
 
 .nav.nav-tabs .nav-item {
     cursor: pointer;
+}
+.splash-screen {
+    margin-top: 15em;
+}
+.splash-screen h1 {
+    font-size: 5em;
+    text-transform: uppercase;
 }

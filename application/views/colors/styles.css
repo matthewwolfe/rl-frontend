@@ -5,12 +5,45 @@
     height: 20px;
     position: absolute;
     border-bottom: 25px solid #000;
-}
-.color-black {
-    background-color: #000;
-}
-.color-titanium-white {
     top: 0;
     right: 0;
+}
+.color-black {
+    border-right: 25px solid #111111;
+}
+.color-burnt-sienna {
+    border-right: 25px solid #4c1100;
+}
+.color-cobalt {
+    border-right: 25px solid #3f51b5;
+}
+.color-crimson {
+    border-right: 25px solid #d50000;
+}
+.color-forrest-green {
+    border-right: 25px solid #4caf50;
+}
+.color-grey {
+    border-right: 25px solid #777777;
+}
+.color-lime {
+    border-right: 25px solid #7fff00;
+}
+.color-orange {
+    border-right: 25px solid #f4b400;
+}
+.color-pink {
+    border-right: 25px solid #ff4081;
+}
+.color-purple {
+    border-right: 25px solid #9c27b0;
+}
+.color-saffron {
+    border-right: 25px solid #ffeb3b;
+}
+.color-sky-blue {
+    border-right: 25px solid #03a9f4;
+}
+.color-titanium-white {
     border-right: 25px solid #fff;
 }
