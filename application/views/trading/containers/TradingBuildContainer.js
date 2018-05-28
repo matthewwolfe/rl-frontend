@@ -56,13 +56,23 @@ class TradingBuildStore extends Section {
         this.set({saving: true});
 
         try {
-            await request.post({
+            const { trade, tradeItems } = await request.post({
                 url: '/trades/save',
                 data: this.form.data
             });
-        }
-        catch (errors) {
 
+            this.form.update(trade);
+            this.form.update({
+                haveItems: tradeItems.filter(tradeItem => tradeItem.type === 'have'),
+                wantItems: tradeItems.filter(tradeItem => tradeItem.type === 'want')
+            });
+
+            this.setSuccessResponse('Successfully saved trade.');
+        }
+        catch (error) {
+            if (error instanceof HttpError) {
+                this.setErrorResponse(error.errors);
+            }
         }
         finally {
             this.set({saving: false});
