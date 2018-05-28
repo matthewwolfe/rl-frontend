@@ -57,6 +57,11 @@ class TradingBuild extends Component {
                                                     form.update({
                                                         haveItems: array.addAtIndex(form.data.haveItems, item, index)
                                                     });
+                                                }}
+                                                onRemoveItem={(item, index) => {
+                                                    form.update({
+                                                        haveItems: array.removeAtIndex(form.data.haveItems, index)
+                                                    });
                                                 }} />
                                         </CardBody>
                                     </Card>
@@ -75,6 +80,11 @@ class TradingBuild extends Component {
                                                 onAddItem={(item, index) => {
                                                     form.update({
                                                         wantItems: array.addAtIndex(form.data.wantItems, item, index)
+                                                    });
+                                                }}
+                                                onRemoveItem={(item, index) => {
+                                                    form.update({
+                                                        wantItems: array.removeAtIndex(form.data.wantItems, index)
                                                     });
                                                 }} />
                                         </CardBody>

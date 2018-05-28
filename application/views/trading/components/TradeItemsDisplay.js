@@ -6,7 +6,7 @@ import { TradeItem } from 'views/trading';
 import { range } from 'libraries/number';
 
 
-function TradeItemsDisplay({editable, items, onAddItem}) {
+function TradeItemsDisplay({editable, items, onAddItem, onRemoveItem}) {
     return (
         <div className="trade-items-display">
             <Row>
@@ -15,7 +15,8 @@ function TradeItemsDisplay({editable, items, onAddItem}) {
                         key={`trade-item-${index}`}
                         editable={editable && items.length >= index}
                         item={items.length > index ? items[index] : undefined}
-                        onAddItem={item => onAddItem(item, index)} />
+                        onAddItem={item => onAddItem(item, index)}
+                        onRemoveItem={item => onRemoveItem(item, index)} />
                 ))}
             </Row>
         </div>
@@ -29,7 +30,8 @@ TradeItemsDisplay.defaultProps = {
 TradeItemsDisplay.propTypes = {
     editable: PropTypes.bool,
     items: MobxPropTypes.arrayOrObservableArray.isRequired,
-    onAddItem: PropTypes.func
+    onAddItem: PropTypes.func,
+    onRemoveItem: PropTypes.func
 };
 
 export default TradeItemsDisplay;

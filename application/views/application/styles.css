@@ -28,3 +28,6 @@ html,body, .container {
     font-size: 5em;
     text-transform: uppercase;
 }
+.oi {
+    cursor: pointer;
+}

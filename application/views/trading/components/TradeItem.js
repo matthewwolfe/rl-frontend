@@ -4,6 +4,7 @@ import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { Col } from 'reactstrap';
 import { titleCaseToDashes } from 'libraries/string';
+import { Icon } from 'views/generic/icon';
 import { TradeItemModal } from 'views/trading';
 
 
@@ -29,12 +30,21 @@ class TradeItem extends Component {
 
         return (
             <Col md={3}>
-                <div
-                    className={`trade-item ${item ? 'has-item' : ''}`}
-                    onClick={this.toggleModal}>
+                <div className={`trade-item ${item ? 'has-item' : ''}`}>
                     {item &&
                         <div className="item">
                             <img src={`${process.env.FRONTEND_URL}/item_images/${item.itemId}.png`} />
+
+                            {editable &&
+                                <span>
+                                    <Icon
+                                        onClick={this.toggleModal}
+                                        type="pencil" />
+                                    <Icon
+                                        onClick={this.props.onRemoveItem}
+                                        type="x" />
+                                </span>
+                            }
 
                             {item.colorId > 0 &&
                                 <div className={`color color-${titleCaseToDashes(colors.get(item.colorId).name)}`}>
@@ -84,7 +94,8 @@ TradeItem.defaultProps = {
 TradeItem.propTypes = {
     editable: PropTypes.bool,
     item: MobxPropTypes.objectOrObservableObject,
-    onAddItem: PropTypes.func
+    onAddItem: PropTypes.func,
+    onRemoveItem: PropTypes.func
 };
 
 export default inject(mapStoresToProps)(observer(TradeItem));
