@@ -9,7 +9,7 @@ import { Response } from 'views/generic/response';
 
 @inject('page')
 @observer
-class LoginPage extends Component {
+class SignupPage extends Component {
 
     constructor(props) {
         super(props);
@@ -21,14 +21,14 @@ class LoginPage extends Component {
 
     render() {
         const { page } = this.props;
-        const { form, loggingIn, response } = page;
+        const { form, response } = page;
 
         return (
             <Container className="login">
                 <Card className="w-50 mx-auto mt-5">
                     <CardBody>
                         <CardTitle className="text-center">
-                            Login
+                            Sign Up
                         </CardTitle>
 
                         <Response
@@ -63,20 +63,33 @@ class LoginPage extends Component {
                             </FormGroup>
 
                             <FormGroup row>
+                                <Label md={3}>
+                                    Confirm Password
+                                </Label>
+
+                                <Col md={7}>
+                                    <Input
+                                        onChange={e => form.update({passwordConfirm: e.target.value})}
+                                        type="password"
+                                        value={form.data.passwordConfirm} />
+                                </Col>
+                            </FormGroup>
+
+                            <FormGroup row>
                                 <Col md={{offset: 3, size: 7}}>
                                     <SubmitButton
                                         color="primary"
-                                        disabled={loggingIn}
-                                        onSubmit={() => page.login()}>
-                                        Log In
+                                        disabled={page.loading}
+                                        onSubmit={() => page.signup()}>
+                                        Sign Up
                                     </SubmitButton>
 
                                     <Button
                                         className="ml-2"
                                         color="primary"
                                         tag={Link}
-                                        to="/signup">
-                                        Sign Up
+                                        to="/login">
+                                        Go to login
                                     </Button>
                                 </Col>
                             </FormGroup>
@@ -88,4 +101,4 @@ class LoginPage extends Component {
     }
 }
 
-export default LoginPage;
+export default SignupPage;

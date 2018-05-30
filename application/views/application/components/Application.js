@@ -4,9 +4,10 @@ import { Route, Switch } from 'react-router-dom';
 import { isLoggedIn } from 'libraries/session';
 import { SplashScreen, TopBar } from 'views/application';
 import { DashboardContainer } from 'views/dashboard';
+import { InventoryPageContainer } from 'views/inventory';
 import { ItemDatabasePage } from 'views/items';
 import { SettingsPageContainer } from 'views/settings';
-import { TradingBuildPageContainer, TradingContainer } from 'views/trading';
+import { MyTradesPageContainer, TradingBuildPageContainer, TradingContainer } from 'views/trading';
 
 
 @inject('application')
@@ -38,7 +39,9 @@ class Application extends Component {
                 <div className="mt-4">
                     <Switch>
                         <Route path="/" exact component={DashboardContainer} />
+                        <Route path="/inventory" exact component={InventoryPageContainer} />
                         <Route path="/items" exact component={ItemDatabasePage} />
+                        <Route path="/my_trades" exact component={MyTradesPageContainer} />
                         <Route path="/settings" exact component={SettingsPageContainer} />
                         <Route path="/trading" exact component={TradingContainer} />
                         <Route path="/trading/build/:id?" component={TradingBuildPageContainer} />

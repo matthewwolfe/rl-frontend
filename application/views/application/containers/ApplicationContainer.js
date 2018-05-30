@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { action, observable } from 'mobx';
+import { withRouter } from 'react-router-dom';
 import { request } from 'libraries/request';
 import { Certifications, Colors, Crates, Items, ItemTypes, Rarities } from 'mobx/collections';
 import { Section } from 'mobx/classes';
@@ -50,10 +51,22 @@ class ApplicationStore extends Section {
 
 const applicationStore = new ApplicationStore();
 
-function ApplicationContainer() {
-    return provide({
-        application: applicationStore
-    })(Application);
+@withRouter
+class ApplicationContainer extends Component {
+
+    shouldComponentUpdate(props) {
+        if (this.props.location.pathname === props.location.pathname) {
+            return false;
+        }
+
+        return true;
+    }
+
+    render() {
+        return provide({
+            application: applicationStore
+        })(Application);
+    }
 }
 
 export default ApplicationContainer;

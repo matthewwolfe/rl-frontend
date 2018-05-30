@@ -12,6 +12,9 @@
     background-color: #eee;
     border-radius: 0.1em;
 }
+.trade-item:not(.has-item) {
+    cursor: pointer;
+}
 .trade-item.has-item {
     background-color: #000;
 }

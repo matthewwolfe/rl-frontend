@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Col, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import { SubmitButton } from 'views/generic/button';
 import { Response } from 'views/generic/response';
+import { ChangePasswordFormContainer } from 'views/settings';
 
 
 class SettingsPage extends Component {
@@ -27,13 +28,13 @@ class SettingsPage extends Component {
 
         return (
             <Container>
-                <h1>Settings</h1>
+                <h2 className="pb-3 border-bottom mb-5">Settings</h2>
 
                 <Response
                     response={response}
                     onHide={page.resetResponse} />
 
-                <Form>
+                <Form className="mb-5">
                     <FormGroup row>
                         <Label md={3}>
                             Gamertag
@@ -97,6 +98,8 @@ class SettingsPage extends Component {
                         </Col>
                     </FormGroup>
                 </Form>
+
+                <ChangePasswordFormContainer />
             </Container>
         );
     }

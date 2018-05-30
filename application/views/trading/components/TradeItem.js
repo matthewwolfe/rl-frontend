@@ -30,7 +30,13 @@ class TradeItem extends Component {
 
         return (
             <Col md={3}>
-                <div className={`trade-item ${item ? 'has-item' : ''}`}>
+                <div
+                    className={`trade-item ${item ? 'has-item' : ''}`}
+                    onClick={() => {
+                        if (!item) {
+                            this.toggleModal();
+                        }
+                    }}>
                     {item &&
                         <div className="item">
                             <img src={`${process.env.FRONTEND_URL}/item_images/${item.itemId}.png`} />

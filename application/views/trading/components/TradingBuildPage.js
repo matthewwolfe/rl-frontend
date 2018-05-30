@@ -33,7 +33,7 @@ class TradingBuildPage extends Component {
 
         return (
             <Container className="trading-build">
-                <h1 className="mb-4">New Trade</h1>
+                <h2 className="pb-3 border-bottom mb-4">New Trade</h2>
 
                 <Response
                     onHide={page.resetResponse}
