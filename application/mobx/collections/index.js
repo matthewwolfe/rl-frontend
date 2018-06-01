@@ -4,6 +4,7 @@ import Crates from './Crates';
 import Items from './Items';
 import ItemTypes from './ItemTypes';
 import Rarities from './Rarities';
+import SystemNotifications from './SystemNotifications';
 import TradeItems from './TradeItems';
 import Trades from './Trades';
 import Users from './Users';
@@ -16,6 +17,7 @@ export {
     Items,
     ItemTypes,
     Rarities,
+    SystemNotifications,
     Trades,
     TradeItems,
     Users

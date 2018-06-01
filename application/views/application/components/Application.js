@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Route, Switch } from 'react-router-dom';
 import { isLoggedIn } from 'libraries/session';
-import { SplashScreen, TopBar } from 'views/application';
+import { Footer, SplashScreen, TopBar } from 'views/application';
 import { DashboardContainer } from 'views/dashboard';
 import { InventoryPageContainer } from 'views/inventory';
 import { ItemDatabasePage } from 'views/items';
@@ -36,7 +36,7 @@ class Application extends Component {
             <div className="application">
                 <TopBar />
 
-                <div className="mt-4">
+                <div className="mt-4 application-body">
                     <Switch>
                         <Route path="/" exact component={DashboardContainer} />
                         <Route path="/inventory" exact component={InventoryPageContainer} />
@@ -47,6 +47,8 @@ class Application extends Component {
                         <Route path="/trading/build/:id?" component={TradingBuildPageContainer} />
                     </Switch>
                 </div>
+
+                <Footer />
             </div>
         );
     }
