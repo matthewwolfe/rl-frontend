@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes as MobxPropTypes } from 'mobx-react';
+import { observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { Row } from 'reactstrap';
 import { TradeItem } from 'views/trading';
@@ -34,4 +34,4 @@ TradeItemsDisplay.propTypes = {
     onRemoveItem: PropTypes.func
 };
 
-export default TradeItemsDisplay;
+export default observer(TradeItemsDisplay);

@@ -4,7 +4,7 @@ import Collection from './Collection';
 
 class ObjectCollection extends Collection {
 
-    @observable data = {};
+    @observable data = new Map();
 
     addNew(data, key = 'id') {
         const model = this.newInstance(data);
@@ -21,12 +21,12 @@ class ObjectCollection extends Collection {
 
     @action.bound
     delete(key) {
-        delete this.data[key];
+        this.data.delete(key.toString());
         return this;
     }
 
     entries() {
-        return Object.entries(this.data);
+        return this.data.entries();
     }
 
     @action.bound
@@ -43,25 +43,19 @@ class ObjectCollection extends Collection {
     }
 
     get(key) {
-        return this.data[key];
+        return this.data.get(key.toString());
     }
 
     has(key) {
-        return this.data.hasOwnProperty(key);
+        return this.data.has(key.toString());
     }
 
     keys() {
-        return Object.keys(this.data);
+        return Array.from(this.data.keys());
     }
 
     get length() {
-        return Object.keys(this.data).length;
-    }
-
-    @action.bound
-    merge(data) {
-        this.data = {...this.data, data};
-        return this;
+        return this.data.size;
     }
 
     newInstance(data) {
@@ -70,12 +64,12 @@ class ObjectCollection extends Collection {
 
     @action.bound
     set(key, value) {
-        this.data[key] = value;
+        this.data.set(key.toString(), value);
         return this;
     }
 
     values() {
-        return Object.values(this.data);
+        return Array.from(this.data.values());
     }
 }
 

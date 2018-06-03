@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardSubtitle, CardTitle, Col, FormGroup, Input, Label, Row } from 'reactstrap';
+import { ConfirmModal } from 'views/generic/confirm';
 import { TradeItemsDisplay } from 'views/trading';
 
 
@@ -48,9 +49,17 @@ function Trade({trade, tradeItems, user}) {
                                         Edit
                                     </Link>
 
-                                    <Link to="#">
+                                    <Link
+                                        id={`trade-delete-${trade.id}`}
+                                        to="#">
                                         Delete
                                     </Link>
+
+                                    <ConfirmModal
+                                        onConfirm={() => trade.delete()}
+                                        target={`trade-delete-${trade.id}`}>
+                                        Are you sure you want to delete this trade?
+                                    </ConfirmModal>
                                 </span>
 
                             }
