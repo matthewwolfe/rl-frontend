@@ -61,6 +61,10 @@ class TradingBuildStore extends Section {
                 data: this.form.data
             });
 
+            if (this.form.data.id === 0) {
+                window.location.href = `/trading/build/${trade.id}`;
+            }
+
             this.form.update(trade);
             this.form.update({
                 haveItems: tradeItems.filter(tradeItem => tradeItem.type === 'have'),

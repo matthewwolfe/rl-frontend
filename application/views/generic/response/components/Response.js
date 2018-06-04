@@ -20,10 +20,12 @@ function Response({className, onHide, response}) {
                 dangerouslySetInnerHTML={{__html: renderMessage(response.message)}}
                 styles={{width: '90%'}} />
 
-            <Icon
-                className="float-right"
-                onClick={onHide}
-                type="x" />
+            {onHide &&
+                <Icon
+                    className="float-right"
+                    onClick={onHide}
+                    type="x" />
+            }
         </Alert>
     );
 }

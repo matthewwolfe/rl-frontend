@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardSubtitle, CardTitle, Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import { ConfirmModal } from 'views/generic/confirm';
+import { FlagTradeModal } from 'views/flags';
 import { TradeItemsDisplay } from 'views/trading';
 
 
@@ -36,11 +37,24 @@ function Trade({trade, tradeItems, user}) {
             <Col className="mt-3" md={12}>
                 <Card>
                     <CardBody>
-                        <CardTitle className="d-inline-block">
+                        <CardTitle className="mb-0 d-inline-block">
                             Details
                         </CardTitle>
 
                         <CardSubtitle className="float-right d-inline-block">
+                            <span>
+                                <Link
+                                    className="mr-3"
+                                    id={`trade-flag-${trade.id}`}
+                                    to="#">
+                                    Flag
+                                </Link>
+
+                                <FlagTradeModal
+                                    target={`trade-flag-${trade.id}`}
+                                    trade={trade} />
+                            </span>
+
                             {trade.userId === user.id &&
                                 <span>
                                     <Link
@@ -61,11 +75,10 @@ function Trade({trade, tradeItems, user}) {
                                         Are you sure you want to delete this trade?
                                     </ConfirmModal>
                                 </span>
-
                             }
                         </CardSubtitle>
 
-                        <FormGroup row>
+                        <FormGroup className="mb-0" row>
                             <Label md={2}>
                                 Description
                             </Label>
@@ -77,7 +90,7 @@ function Trade({trade, tradeItems, user}) {
                             </Col>
                         </FormGroup>
 
-                        <FormGroup row>
+                        <FormGroup className="mb-0" row>
                             <Label md={2}>
                                 Platform
                             </Label>
