@@ -16,6 +16,8 @@ class MessagesPage extends Component {
     }
 
     render() {
+        const { users } = this.props.page;
+
         return (
             <Container
                 className="messages"
@@ -24,14 +26,16 @@ class MessagesPage extends Component {
                 <Row>
                     <Col md={4}>
                         <ListGroup>
-                            <ListGroupItem>
-                                User 1
-                            </ListGroupItem>
-                            <ListGroupItem>
-                                User 2
-                            </ListGroupItem>
-                            <ListGroupItem>
-                                User 3
+                            {users.values().map(user => (
+                                <ListGroupItem key={user.id}>
+                                    {user.username}
+                                </ListGroupItem>
+                            ))}
+
+                            <ListGroupItem
+                                color="secondary"
+                                tag={Button}>
+                                Start Conversation
                             </ListGroupItem>
                         </ListGroup>
                     </Col>

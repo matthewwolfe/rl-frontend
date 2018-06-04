@@ -17,8 +17,8 @@ class FlagTradeModal extends Component {
             isOpen: false,
             reason: '',
             response: {
-                status: 'success',
-                message: 'Test response working'
+                status: '',
+                message: ''
             },
             saving: false,
             saved: false
