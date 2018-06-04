@@ -38,7 +38,9 @@ html,body, .container {
 .col-form-label {
     text-align: right;
 }
-
+textarea {
+    resize: none;
+}
 .nav.nav-tabs .nav-item {
     cursor: pointer;
 }
@@ -51,4 +53,7 @@ html,body, .container {
 }
 .oi {
     cursor: pointer;
+}
+.w-85 {
+    width: 85% !important;
 }

@@ -76,6 +76,14 @@ class TopBar extends Component {
                         <NavItem>
                             <NavLink
                                 tag={Link}
+                                to="/messages">
+                                Messages
+                            </NavLink>
+                        </NavItem>
+
+                        <NavItem>
+                            <NavLink
+                                tag={Link}
                                 to="/settings">
                                 Settings
                             </NavLink>
