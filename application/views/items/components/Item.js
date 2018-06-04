@@ -9,7 +9,11 @@ function Item({className, item, size}) {
             className={className}
             md={size}>
             <div className="item">
-                {item.name}
+                <img src={`${process.env.FRONTEND_URL}/item_images/${item.id}.png`} />
+
+                <p className="mt-2 item-name">
+                    {item.name}
+                </p>
             </div>
         </Col>
     );

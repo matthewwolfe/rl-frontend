@@ -26,7 +26,7 @@ class TradeItem extends Component {
     }
 
     render() {
-        const { certifications, colors, crates, items, editable, item } = this.props;
+        const { certifications, colors, items, editable, item } = this.props;
 
         return (
             <Col md={3}>

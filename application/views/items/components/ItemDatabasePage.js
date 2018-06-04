@@ -18,7 +18,7 @@ class ItemDatabasePage extends Component {
         const { items, itemTypes } = this.props;
 
         return (
-            <Container>
+            <Container className="item-database">
                 <Nav tabs>
                     {itemTypes.values().map(itemType => (
                         <ItemTypeTab

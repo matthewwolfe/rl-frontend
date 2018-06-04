@@ -1,5 +1,28 @@
+.item-database .item {
+    border: 1px solid #ccc;
+    background-color: #000;
+}
+
+.item-database .item img {
+    display: block;
+    max-width: 75%;
+    max-height: 60%;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+.item-database .item p {
+    color: #fff;
+}
+.item-database .item .item-name {
+    font-weight: 200;
+    text-transform: uppercase;
+    font-size: 0.75em;
+}
+
 .item {
-    height: 9em;
+    height: 10em;
     margin-bottom: 1em;
     text-align: center;
 }
