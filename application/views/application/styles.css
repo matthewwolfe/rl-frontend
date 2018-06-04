@@ -57,3 +57,6 @@ textarea {
 .w-85 {
     width: 85% !important;
 }
+.navbar-nav .unread-messages-count {
+    line-height: 1.5em;
+}

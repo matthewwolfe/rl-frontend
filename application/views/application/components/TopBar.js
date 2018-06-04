@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
-import { Collapse, Nav, Navbar, NavbarBrand, NavItem, NavLink, NavbarToggler } from 'reactstrap';
+import {
+    Collapse,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Nav,
+    Navbar,
+    NavbarBrand,
+    NavItem,
+    NavLink,
+    NavbarToggler,
+    UncontrolledDropdown
+} from 'reactstrap';
 import { logout } from 'libraries/session';
+import { MessagesCount } from 'views/messages';
 
 
 @inject('application')
@@ -65,38 +78,40 @@ class TopBar extends Component {
                             </NavLink>
                         </NavItem>
 
-                        <NavItem>
-                            <NavLink
-                                tag={Link}
-                                to="/my_trades">
-                                My Trades
-                            </NavLink>
-                        </NavItem>
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>
+                                Account
+                            </DropdownToggle>
+
+                            <DropdownMenu className="mt-3" right>
+                                <DropdownItem
+                                    tag={Link}
+                                    to="/my_trades">
+                                    My Trades
+                                </DropdownItem>
+
+                                <DropdownItem
+                                    tag={Link}
+                                    to="/settings">
+                                    Settings
+                                </DropdownItem>
+
+                                <DropdownItem
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        logout();
+                                    }}>
+                                    Log out
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
 
                         <NavItem>
                             <NavLink
                                 tag={Link}
                                 to="/messages">
-                                Messages
-                            </NavLink>
-                        </NavItem>
-
-                        <NavItem>
-                            <NavLink
-                                tag={Link}
-                                to="/settings">
-                                Settings
-                            </NavLink>
-                        </NavItem>
-
-                        <NavItem>
-                            <NavLink
-                                href="#"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    logout();
-                                }}>
-                                Log out
+                                <MessagesCount />
                             </NavLink>
                         </NavItem>
                     </Nav>
