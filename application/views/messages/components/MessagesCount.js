@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { constants } from 'config/constants';
-import { webSocket } from 'libraries/websocket';
+import { actions, websocket } from 'websocket';
 import { Badge } from 'reactstrap';
 
 
@@ -14,11 +13,11 @@ class MessagesCount extends Component {
             count: 0
         };
 
-        this.listener = webSocket.addMessageListener(constants.WS_TYPES.UNREAD_MESSAGE_COUNT, ({count}) => {
+        this.listener = websocket.addMessageListener(actions.RECEIVING.UNREAD_MESSAGE_COUNT, ({count}) => {
             this.setState({count: count});
         });
 
-        webSocket.send(constants.WS_TYPES.GET_UNREAD_MESSAGE_COUNT);
+        websocket.send(actions.SENDING.UNREAD_MESSAGE_COUNT);
     }
 
     componentWillUnmount() {

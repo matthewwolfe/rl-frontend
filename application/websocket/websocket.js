@@ -50,7 +50,7 @@ function send(type, data = {}) {
     ws.send(JSON.stringify({type: type, data: data}));
 }
 
-export const webSocket = {
+export const websocket = {
     addMessageListener,
     initialize,
     removeMessageListener,

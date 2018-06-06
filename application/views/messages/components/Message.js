@@ -1,17 +1,13 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { FormattedRelative } from 'react-intl';
 
 
 function Message({message, currentUser}) {
+
     return (
         <div className={getClassNames(message, currentUser)}>
             <div className="message">
                 {message.message}
-            </div>
-
-            <div className="sent-at text-right">
-                <FormattedRelative value={message.createdAt} />
             </div>
         </div>
 

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { action, observable } from 'mobx';
 import { withRouter } from 'react-router-dom';
 import { request } from 'libraries/request';
-import { webSocket } from 'libraries/websocket';
 import { Certifications, Colors, Crates, Items, ItemTypes, Rarities } from 'mobx/collections';
 import { Section } from 'mobx/classes';
 import { User } from 'mobx/models';
 import { provide } from 'mobx/utils';
+import { websocket } from 'websocket';
 import { Application } from 'views/application';
 
 
@@ -25,7 +25,7 @@ class ApplicationStore extends Section {
     async initialize() {
         this.set({loading: true});
 
-        webSocket.initialize();
+        websocket.initialize();
 
         const { certifications, colors, crates, items, itemTypes, rarities, user } = await request.get({
             url: '/initialize'
