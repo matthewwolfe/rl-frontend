@@ -51,6 +51,19 @@ class SignupPage extends Component {
 
                             <FormGroup row>
                                 <Label md={3}>
+                                    Username
+                                </Label>
+
+                                <Col md={7}>
+                                    <Input
+                                        onChange={e => form.update({username: e.target.value})}
+                                        type="text"
+                                        value={form.data.username} />
+                                </Col>
+                            </FormGroup>
+
+                            <FormGroup row>
+                                <Label md={3}>
                                     Password
                                 </Label>
 

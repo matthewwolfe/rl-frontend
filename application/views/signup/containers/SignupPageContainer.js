@@ -18,6 +18,7 @@ class SignupPageStore extends Section {
 
         this.form = new Form({
             email: '',
+            username: '',
             password: '',
             passwordConfirm: ''
         });
