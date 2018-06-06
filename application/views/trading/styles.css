@@ -45,6 +45,10 @@
     top: 0.75em;
     left: 2.5em;
 }
+.trade-item .item .quantity {
+    position: absolute;
+    top: 4.5em;
+}
 .trade-item .item .item-name {
     font-weight: 200;
     text-transform: uppercase;

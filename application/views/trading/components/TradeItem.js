@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
 import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import PropTypes from 'prop-types';
-import { Col } from 'reactstrap';
+import { Badge, Col } from 'reactstrap';
 import { titleCaseToDashes } from 'libraries/string';
 import { Icon } from 'views/generic/icon';
 import { TradeItemModal } from 'views/trading';
@@ -55,6 +55,15 @@ class TradeItem extends Component {
                             {item.colorId > 0 &&
                                 <div className={`color color-${titleCaseToDashes(colors.get(item.colorId).name)}`}>
                                     text
+                                </div>
+                            }
+
+                            {item.quantity > 1 &&
+                                <div className="mx-auto text-center w-100 quantity">
+                                    <Badge
+                                        color="secondary">
+                                        {item.quantity}
+                                    </Badge>
                                 </div>
                             }
 
