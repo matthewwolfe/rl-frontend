@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
-import { Button, Card, CardBody, Col, Form, Label, Table } from 'reactstrap';
+import { Button, Card, CardBody, Col, Form, Table } from 'reactstrap';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
+import { CrateSelect } from 'views/crates';
 import { ItemSelect } from 'views/items';
 import { PlatformSelect } from 'views/platforms';
 import { SearchFilter } from 'views/trading';
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
     form: {
         certificationId: 0,
         colorId: 0,
+        crateId: 0,
         itemId: 0,
         platform: ''
     }
@@ -82,38 +84,30 @@ class SearchFilters extends Component {
                     </Col>
 
                     <Form className="mt-3" inline>
-                        <Label className="mr-2">
-                            Platform
-                        </Label>
-
                         <PlatformSelect
                             className="mr-2"
                             onChange={platform => this.updateForm({platform: platform})}
                             value={this.form.platform} />
 
-                        <Label className="ml-2 mr-2">
-                            Item
-                        </Label>
-
                         <ItemSelect
+                            className="mr-2"
                             onChange={id => this.updateForm({itemId: id})}
                             value={this.form.itemId} />
 
-                        <Label className="ml-2 mr-2">
-                            Paint
-                        </Label>
-
                         <ColorSelect
+                            className="mr-2"
                             onChange={id => this.updateForm({colorId: id})}
                             value={this.form.colorId} />
 
-                        <Label className="ml-2 mr-2">
-                            Certification
-                        </Label>
-
                         <CertificationSelect
+                            className="mr-2"
                             onChange={id => this.updateForm({certificationId: id})}
                             value={this.form.certificationId} />
+
+                        <CrateSelect
+                            className="mr-2"
+                            onChange={id => this.updateForm({crateId: id})}
+                            value={this.form.crateId} />
 
                         <Button
                             className="ml-2"

@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 
-function ColorSelect({colors, onChange, value}) {
+function ColorSelect({className, colors, onChange, value}) {
     return (
         <Select
+            className={className}
             isClearable={true}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={colors.selectOptions}
+            placeholder="Paint"
             styles={{
                 input: () => ({
                     width: 120
@@ -20,10 +22,12 @@ function ColorSelect({colors, onChange, value}) {
 }
 
 ColorSelect.defaultProps = {
+    className: '',
     value: 0
 };
 
 ColorSelect.propTypes = {
+    className: PropTypes.string,
     value: PropTypes.number.isRequired
 };
 

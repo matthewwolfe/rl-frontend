@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 
-function ItemSelect({items, itemTypes, onChange, value}) {
+function ItemSelect({className, items, itemTypes, onChange, value}) {
 
     const options = itemTypes.values().map(itemType => ({
         label: itemType.name,
@@ -16,9 +16,11 @@ function ItemSelect({items, itemTypes, onChange, value}) {
 
     return (
         <Select
+            className={className}
             isClearable={true}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={options}
+            placeholder="Item"
             styles={{
                 input: () => ({
                     width: 200
@@ -29,10 +31,12 @@ function ItemSelect({items, itemTypes, onChange, value}) {
 }
 
 ItemSelect.defaultProps = {
+    className: '',
     value: 0
 };
 
 ItemSelect.propTypes = {
+    className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.number.isRequired
 };

@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 
-function CertificationSelect({certifications, onChange, value}) {
+function CertificationSelect({certifications, className, onChange, value}) {
     return (
         <Select
+            className={className}
             isClearable={true}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={certifications.selectOptions}
+            placeholder="Certification"
             styles={{
                 input: () => ({
                     width: 160
@@ -20,10 +22,12 @@ function CertificationSelect({certifications, onChange, value}) {
 }
 
 CertificationSelect.defaultProps = {
+    className: '',
     value: 0
 };
 
 CertificationSelect.propTypes = {
+    className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.number.isRequired
 };

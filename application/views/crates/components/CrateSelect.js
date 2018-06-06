@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 
-function CrateSelect({crates, onChange, value}) {
+function CrateSelect({className, crates, onChange, value}) {
     return (
         <Select
+            className={className}
             isClearable={true}
             onChange={selected => onChange(!selected ? 0 : selected.value)}
             options={crates.selectOptions}
+            placeholder="Crate"
             styles={{
                 input: () => ({
                     width: 160
@@ -20,10 +22,12 @@ function CrateSelect({crates, onChange, value}) {
 }
 
 CrateSelect.defaultProps = {
+    className: '',
     value: 0
 };
 
 CrateSelect.propTypes = {
+    className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.number.isRequired
 };
