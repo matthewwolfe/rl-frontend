@@ -6,18 +6,19 @@ import Select from 'react-select';
 
 function CrateSelect({className, crates, onChange, value}) {
     return (
-        <Select
-            className={className}
-            isClearable={true}
-            onChange={selected => onChange(!selected ? 0 : selected.value)}
-            options={crates.selectOptions}
-            placeholder="Crate"
-            styles={{
-                input: () => ({
-                    width: 160
-                })
-            }}
-            value={crates.selectOptions.filter(option => option.value === value)} />
+        <span className={className}>
+            <Select
+                isClearable={true}
+                onChange={selected => onChange(!selected ? 0 : selected.value)}
+                options={crates.selectOptions}
+                placeholder="Crate"
+                styles={{
+                    input: () => ({
+                        width: 160
+                    })
+                }}
+                value={crates.selectOptions.filter(option => option.value === value)} />
+        </span>
     );
 }
 

@@ -15,18 +15,19 @@ function ItemSelect({className, items, itemTypes, onChange, value}) {
     }));
 
     return (
-        <Select
-            className={className}
-            isClearable={true}
-            onChange={selected => onChange(!selected ? 0 : selected.value)}
-            options={options}
-            placeholder="Item"
-            styles={{
-                input: () => ({
-                    width: 200
-                })
-            }}
-            value={items.selectOptions.filter(option => option.value === value)} />
+        <span className={className}>
+            <Select
+                isClearable={true}
+                onChange={selected => onChange(!selected ? 0 : selected.value)}
+                options={options}
+                placeholder="Item"
+                styles={{
+                    input: () => ({
+                        width: 200
+                    })
+                }}
+                value={items.selectOptions.filter(option => option.value === value)} />
+        </span>
     );
 }
 

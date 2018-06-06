@@ -3,8 +3,8 @@ import { inject, observer } from 'mobx-react';
 import { Button } from 'reactstrap';
 
 
-function SearchFilter({certifications, colors, items, removeSearchItem, searchFilter}) {
-    const { certificationId, colorId, itemId, platform } = searchFilter;
+function SearchFilter({certifications, colors, crates, items, removeSearchItem, searchFilter}) {
+    const { certificationId, colorId, crateId, itemId, platform } = searchFilter;
 
     return (
         <tr>
@@ -20,11 +20,15 @@ function SearchFilter({certifications, colors, items, removeSearchItem, searchFi
             <td>
                 {certificationId ? certifications.get(certificationId).name : 'N/A'}
             </td>
+            <td>
+                {crateId ? crates.get(crateId).name : 'N/A'}
+            </td>
             <td style={{width: '200px'}}>
                 <Button
                     className="float-right"
                     color="secondary"
-                    onClick={() => removeSearchItem()}>
+                    onClick={() => removeSearchItem()}
+                    size="sm">
                     Remove Filter
                 </Button>
             </td>
@@ -36,6 +40,7 @@ function mapStoresToProps(stores) {
     return {
         certifications: stores.application.certifications,
         colors: stores.application.colors,
+        crates: stores.application.crates,
         items: stores.application.items
     };
 }

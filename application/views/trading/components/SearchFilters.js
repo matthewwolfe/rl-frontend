@@ -126,6 +126,7 @@ class SearchFilters extends Component {
                                     <th>Item</th>
                                     <th>Paint</th>
                                     <th>Certification</th>
+                                    <th>Crate</th>
                                     <th></th>
                                 </tr>
                             </thead>

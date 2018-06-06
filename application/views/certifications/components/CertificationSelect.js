@@ -6,18 +6,20 @@ import Select from 'react-select';
 
 function CertificationSelect({certifications, className, onChange, value}) {
     return (
-        <Select
-            className={className}
-            isClearable={true}
-            onChange={selected => onChange(!selected ? 0 : selected.value)}
-            options={certifications.selectOptions}
-            placeholder="Certification"
-            styles={{
-                input: () => ({
-                    width: 160
-                })
-            }}
-            value={certifications.selectOptions.filter(option => option.value === value)} />
+        <span className={className}>
+            <Select
+                isClearable={true}
+                onChange={selected => onChange(!selected ? 0 : selected.value)}
+                options={certifications.selectOptions}
+                placeholder="Certification"
+                styles={{
+                    input: () => ({
+                        width: 160
+                    })
+                }}
+                value={certifications.selectOptions.filter(option => option.value === value)} />
+        </span>
+
     );
 }
 
