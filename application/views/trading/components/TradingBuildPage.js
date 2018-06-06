@@ -137,7 +137,7 @@ class TradingBuildPage extends Component {
                                         color="success"
                                         disabled={page.saving}
                                         onClick={() => page.save()}>
-                                        Add Trade
+                                        Save Trade
                                     </Button>
                                 </Col>
                             </Row>

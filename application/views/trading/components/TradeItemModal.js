@@ -3,6 +3,7 @@ import autobind from 'autobind-decorator';
 import PropTypes from 'prop-types';
 import { PropTypes as MobxPropTypes } from 'mobx-react';
 import { Button, Col, Form, FormGroup, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { NumberInput } from 'views/generic/input';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
 import { CrateSelect } from 'views/crates';
@@ -16,6 +17,7 @@ class TradeItemModal extends Component {
         colorId: 0,
         crateId: 0,
         itemId: 0,
+        quantity: 1
     };
 
     constructor(props) {
@@ -30,7 +32,8 @@ class TradeItemModal extends Component {
                 certificationId: item.certificationId,
                 colorId: item.colorId,
                 crateId: item.crateId,
-                itemId: item.itemId
+                itemId: item.itemId,
+                quantity: item.quantity
             });
         }
     }
@@ -106,6 +109,18 @@ class TradeItemModal extends Component {
                                 <CrateSelect
                                     onChange={crateId => this.setState({crateId: crateId})}
                                     value={this.state.crateId} />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Label md={3}>
+                                Quantity
+                            </Label>
+
+                            <Col md={9}>
+                                <NumberInput
+                                    onChange={quantity => this.setState({quantity: quantity})}
+                                    value={this.state.quantity} />
                             </Col>
                         </FormGroup>
                     </Form>
