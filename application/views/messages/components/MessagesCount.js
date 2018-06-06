@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import autobind from 'autobind-decorator';
+import { inject, observer } from 'mobx-react';
+import { constants } from 'config/constants';
+import { webSocket } from 'libraries/webSocket';
 import { Badge } from 'reactstrap';
-import { HttpError } from 'errors';
-import { request } from 'libraries/request';
 
 
 class MessagesCount extends Component {
@@ -11,41 +11,18 @@ class MessagesCount extends Component {
         super(props);
 
         this.state = {
-            count: 0,
-            loading: true
+            count: 0
         };
 
-        this.timer = null;
-    }
+        this.listener = webSocket.addMessageListener(constants.WS_TYPES.UNREAD_MESSAGE_COUNT, ({count}) => {
+            this.setState({count: count});
+        });
 
-    componentDidMount() {
-        this.fetchUnreadCount();
-        this.timer = setInterval(this.fetchUnreadCount, 10 * 1000);
+        webSocket.send(constants.WS_TYPES.GET_UNREAD_MESSAGE_COUNT);
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
-    }
-
-    @autobind
-    async fetchUnreadCount() {
-        this.setState({loading: true});
-
-        try {
-            const { count } = await request.get({
-                url: '/messages/unread_count'
-            });
-
-            this.setState({count: count});
-        }
-        catch (error) {
-            if (error instanceof HttpError) {
-                this.setState({count: 0});
-            }
-        }
-        finally {
-            this.setState({loading: false});
-        }
+        this.listener.remove();
     }
 
     render() {
@@ -61,4 +38,4 @@ class MessagesCount extends Component {
     }
 }
 
-export default MessagesCount;
+export default inject('application')(observer(MessagesCount));

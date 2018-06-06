@@ -1,0 +1,6 @@
+export const constants = {
+    WS_TYPES: {
+        GET_UNREAD_MESSAGE_COUNT: 'GET_UNREAD_MESSAGE_COUNT',
+        UNREAD_MESSAGE_COUNT: 'UNREAD_MESSAGE_COUNT'
+    }
+};

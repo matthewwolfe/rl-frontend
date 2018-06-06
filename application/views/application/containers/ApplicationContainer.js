@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { action, observable } from 'mobx';
 import { withRouter } from 'react-router-dom';
 import { request } from 'libraries/request';
+import { webSocket } from 'libraries/webSocket';
 import { Certifications, Colors, Crates, Items, ItemTypes, Rarities } from 'mobx/collections';
 import { Section } from 'mobx/classes';
 import { User } from 'mobx/models';
@@ -23,6 +24,8 @@ class ApplicationStore extends Section {
     @action.bound
     async initialize() {
         this.set({loading: true});
+
+        webSocket.initialize();
 
         const { certifications, colors, crates, items, itemTypes, rarities, user } = await request.get({
             url: '/initialize'
