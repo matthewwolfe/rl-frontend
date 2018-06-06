@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import {
     Button, Card, CardBody, CardFooter, Col, Container, Form, FormGroup, Input, ListGroup, ListGroupItem, Row
 } from 'reactstrap';
+import { Message } from 'views/messages';
 
 
 @inject('page')
@@ -16,7 +17,8 @@ class MessagesPage extends Component {
     }
 
     render() {
-        const { users } = this.props.page;
+        const { page } = this.props;
+        const { messages, selectedUserId, users } = page;
 
         return (
             <Container
@@ -27,25 +29,33 @@ class MessagesPage extends Component {
                     <Col md={4}>
                         <ListGroup>
                             {users.values().map(user => (
-                                <ListGroupItem key={user.id}>
+                                <ListGroupItem
+                                    className={`user ${selectedUserId === user.id ? 'selected' : ''}`}
+                                    key={user.id}
+                                    onClick={() => page.set({selectedUserId: user.id})}>
                                     {user.username}
                                 </ListGroupItem>
                             ))}
-
-                            <ListGroupItem
-                                color="secondary"
-                                tag={Button}>
-                                Start Conversation
-                            </ListGroupItem>
                         </ListGroup>
                     </Col>
 
                     <Col md={7}>
                         <Card>
-                            <CardBody />
+                            <CardBody>
+                                {selectedUserId > 0 &&
+                                    messages.values().filter(message =>
+                                        message.userId === selectedUserId ||
+                                        message.recipientId === selectedUserId
+                                    ).map(message => (
+                                        <Message
+                                            key={message.id}
+                                            message={message} />
+                                    ))
+                                }
+                            </CardBody>
 
                             <CardFooter>
-                                <Form inline>
+                                <Form className="mb-0" inline>
                                     <FormGroup className="w-100">
                                         <Input
                                             className="w-85"

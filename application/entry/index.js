@@ -2,12 +2,15 @@ import 'regenerator-runtime/runtime';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { IntlProvider } from 'react-intl';
 import Router from './Router';
 
 
 render(
     <AppContainer>
-        <Router />
+        <IntlProvider locale="en">
+            <Router />
+        </IntlProvider>
     </AppContainer>,
     document.getElementById('app')
 );

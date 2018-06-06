@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { constants } from 'config/constants';
-import { webSocket } from 'libraries/webSocket';
+import { webSocket } from 'libraries/websocket';
 import { Badge } from 'reactstrap';
 
 

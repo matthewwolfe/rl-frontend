@@ -2,3 +2,41 @@
     height: 600px;
     overflow-y: scroll;
 }
+
+.messages .user {
+    cursor: pointer;
+    border-radius: 0;
+}
+.messages .user.selected {
+    background-color: #eee;
+}
+
+.messages .message-container {
+    clear: both;
+    float: left;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    max-width: 60%;
+}
+.messages .message-container.mine {
+    float: right;
+}
+
+.messages .message {
+    background-color: #eee;
+    border-radius: 4px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.messages .message-container.mine .message {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.messages .message-container .sent-at span {
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: 200;
+}
