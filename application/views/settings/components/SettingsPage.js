@@ -23,7 +23,7 @@ class SettingsPage extends Component {
     }
 
     render() {
-        const { page } = this.props;
+        const { application, page } = this.props;
         const { form, response } = page;
 
         return (
@@ -35,6 +35,30 @@ class SettingsPage extends Component {
                     onHide={page.resetResponse} />
 
                 <Form className="mb-5">
+                    <FormGroup row>
+                        <Label md={3}>
+                            Email
+                        </Label>
+
+                        <Col md={4}>
+                            <Input plaintext>
+                                {application.user.email}
+                            </Input>
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup row>
+                        <Label md={3}>
+                            Username
+                        </Label>
+
+                        <Col md={4}>
+                            <Input plaintext>
+                                {application.user.username}
+                            </Input>
+                        </Col>
+                    </FormGroup>
+
                     <FormGroup row>
                         <Label md={3}>
                             Gamertag
