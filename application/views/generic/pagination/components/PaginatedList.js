@@ -16,7 +16,7 @@ function PaginatedList({className, pagination, renderer}) {
         <Pagination
             className="float-right"
             page={pagination.page}
-            total={pagination.total}
+            lastPage={pagination.lastPage}
             onChange={page => pagination.changePage(page).fetch()} />
     );
 

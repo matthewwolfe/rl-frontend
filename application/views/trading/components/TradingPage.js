@@ -27,7 +27,7 @@ class TradingPage extends Component {
                     pagination={pagination}
                     renderer={trade => (
                         <Trade
-                            key={trade}
+                            key={trade.id}
                             trade={trade}
                             tradeItems={tradeItems.values().filter(tradeItem => tradeItem.tradeId === trade.id)} />
                     )} />

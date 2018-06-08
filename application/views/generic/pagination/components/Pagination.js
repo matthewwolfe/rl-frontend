@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Pagination as BasePagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 
-function Pagination({className, onChange, page, total}) {
+function Pagination({className, onChange, page, lastPage}) {
     return (
         <BasePagination className={className}>
             {page > 1 &&
@@ -27,19 +28,30 @@ function Pagination({className, onChange, page, total}) {
                 </PaginationLink>
             </PaginationItem>
 
-            {page < total &&
+            {page < lastPage &&
                 <PaginationItem>
                     <PaginationLink
                         href="#"
                         next
                         onClick={(e) => {
                             e.preventDefault();
-                            onChange(total);
+                            onChange(lastPage);
                         }} />
                 </PaginationItem>
             }
         </BasePagination>
     );
 }
+
+Pagination.defaultProps = {
+    className: ''
+};
+
+Pagination.propTypes = {
+    className: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    page: PropTypes.number.isRequired,
+    lastPage: PropTypes.number.isRequired
+};
 
 export default Pagination;

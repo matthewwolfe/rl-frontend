@@ -9,7 +9,7 @@ import { TradeItemsDisplay } from 'views/trading';
 
 function Trade({trade, tradeItems, user}) {
     return (
-        <Row className="mb-3">
+        <Row className="mb-5">
             <Col md={6}>
                 <Card>
                     <CardBody>
