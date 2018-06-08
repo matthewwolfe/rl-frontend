@@ -4,8 +4,12 @@ import { observer } from 'mobx-react';
 
 function Loader({children, className, loading}) {
 
-    if (!loading) {
+    if (!loading && children) {
         return children();
+    }
+
+    if (!loading) {
+        return null;
     }
 
     return (

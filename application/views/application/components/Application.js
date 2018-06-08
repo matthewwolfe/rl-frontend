@@ -8,7 +8,7 @@ import { InventoryPageContainer } from 'views/inventory';
 import { ItemDatabasePage } from 'views/items';
 import { MessagesPageContainer } from 'views/messages';
 import { SettingsPageContainer } from 'views/settings';
-import { MyTradesPageContainer, TradingBuildPageContainer, TradingContainer } from 'views/trading';
+import { MyTradesPageContainer, TradingBuildPageContainer, TradingPageContainer } from 'views/trading';
 
 
 @inject('application')
@@ -45,7 +45,7 @@ class Application extends Component {
                         <Route path="/messages" exact component={MessagesPageContainer} />
                         <Route path="/my_trades" exact component={MyTradesPageContainer} />
                         <Route path="/settings" exact component={SettingsPageContainer} />
-                        <Route path="/trading" exact component={TradingContainer} />
+                        <Route path="/trading" exact component={TradingPageContainer} />
                         <Route path="/trading/build/:id?" component={TradingBuildPageContainer} />
                     </Switch>
                 </div>

@@ -1,12 +1,12 @@
 import MyTradesPageContainer from './containers/MyTradesPageContainer';
 import TradingBuildPageContainer from './containers/TradingBuildPageContainer';
-import TradingContainer from './containers/TradingContainer';
+import TradingPageContainer from './containers/TradingPageContainer';
 import MyTradesPage from './components/MyTradesPage';
 import Trade from './components/Trade';
 import TradeItemModal from './components/TradeItemModal';
 import SearchFilters from './components/SearchFilters';
 import SearchFilter from './components/SearchFilter';
-import Trading from './components/Trading';
+import TradingPage from './components/TradingPage';
 import TradingBuildPage from './components/TradingBuildPage';
 import TradeItem from './components/TradeItem';
 import TradeItemsDisplay from './components/TradeItemsDisplay';
@@ -16,13 +16,13 @@ import './styles.css';
 export {
     MyTradesPageContainer,
     TradingBuildPageContainer,
-    TradingContainer,
+    TradingPageContainer,
     MyTradesPage,
     Trade,
     TradeItemModal,
     SearchFilters,
     SearchFilter,
-    Trading,
+    TradingPage,
     TradingBuildPage,
     TradeItem,
     TradeItemsDisplay
