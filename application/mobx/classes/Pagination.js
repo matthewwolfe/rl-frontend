@@ -9,14 +9,19 @@ class Pagination {
     url = '';
 
     @observable data = [];
+    @observable filters = {};
     @observable lastPage;
     @observable limit;
     @observable page;
     @observable total;
 
-    constructor({url, onFetch, page, limit}) {
+    constructor({filters, url, onFetch, page, limit}) {
         this.url = url;
         this.page = page;
+
+        if (filters) {
+            this.filters = Object.assign({}, filters);
+        }
 
         if (limit) {
             this.limit = limit;
@@ -37,9 +42,10 @@ class Pagination {
     async fetch() {
         this.loading = true;
 
-        const response = await request.get({
+        const response = await request.post({
             url: this.url,
-            params: {
+            data: {
+                ...this.filters,
                 limit: this.limit,
                 page: this.page
             }
@@ -58,6 +64,12 @@ class Pagination {
         this.total = total;
 
         this.loading = false;
+    }
+
+    @action.bound
+    updateFilters(filters) {
+        this.filters = Object.assign({}, this.filters, filters);
+        return this;
     }
 }
 

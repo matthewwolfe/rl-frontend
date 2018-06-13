@@ -16,7 +16,7 @@ class TradingPage extends Component {
     }
 
     render() {
-        const { pagination, tradeItems } = this.props.page;
+        const { pagination } = this.props.page;
 
         return (
             <Container fluid>
@@ -29,7 +29,7 @@ class TradingPage extends Component {
                         <Trade
                             key={trade.id}
                             trade={trade}
-                            tradeItems={tradeItems.values().filter(tradeItem => tradeItem.tradeId === trade.id)} />
+                            tradeItems={trade.tradeItems} />
                     )} />
             </Container>
         );

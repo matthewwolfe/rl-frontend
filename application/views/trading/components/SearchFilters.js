@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
-import { Button, Card, CardBody, Col, Form, Table } from 'reactstrap';
+import { inject, observer } from 'mobx-react';
+import { Button, Card, CardBody, Col, Form, Input, Label, Row, Table } from 'reactstrap';
 import { CertificationSelect } from 'views/certifications';
 import { ColorSelect } from 'views/colors';
 import { CrateSelect } from 'views/crates';
@@ -10,16 +11,19 @@ import { SearchFilter } from 'views/trading';
 
 
 const INITIAL_STATE = {
-    searchFilters: [],
     form: {
         certificationId: 0,
         colorId: 0,
         crateId: 0,
         itemId: 0,
-        platform: ''
-    }
+    },
+    platform: '',
+    searchFilters: [],
+    type: 'want'
 };
 
+@inject('page')
+@observer
 class SearchFilters extends Component {
 
     constructor(props) {
@@ -63,32 +67,67 @@ class SearchFilters extends Component {
     }
 
     render() {
+        const { pagination } = this.props.page;
+        const { searchFilters, type } = this.state;
+
         return (
             <Card>
                 <CardBody>
-                    <Col md={12}>
-                        <div className="float-right">
-                            <Button
-                                className="mr-1"
-                                color="primary">
-                                Search
-                            </Button>
-                            <Button
-                                color="primary"
-                                onClick={() => this.setState(Object.assign({}, INITIAL_STATE))}>
-                                Clear Filters
-                            </Button>
-                        </div>
+                    <Row>
+                        <Col md={12}>
+                            <div className="form-inline float-left">
+                                <Label className="mr-2">
+                                    Type
+                                </Label>
 
-                        <div className="clearfix" />
-                    </Col>
+                                <Input
+                                    className="mr-2"
+                                    onChange={e => this.setState({type: e.target.value})}
+                                    type="select"
+                                    value={this.state.type}>
+
+                                    <option value="want">
+                                        Want
+                                    </option>
+                                    <option value="have">
+                                        Have
+                                    </option>
+                                </Input>
+
+                                <Label className="ml-2 mr-2">
+                                    Platform
+                                </Label>
+
+                                <PlatformSelect
+                                    onChange={platform => this.setState({platform: platform})}
+                                    value={this.state.platform} />
+                            </div>
+
+                            <div className="float-right">
+                                <Button
+                                    className="mr-1"
+                                    color="primary"
+                                    onClick={() => {
+                                        pagination.updateFilters({
+                                            searchFilters: searchFilters,
+                                            type: type
+                                        }).fetch();
+                                    }}>
+                                    Search
+                                </Button>
+                                <Button
+                                    color="primary"
+                                    onClick={() => this.setState(Object.assign({}, INITIAL_STATE))}>
+                                    Clear Filters
+                                </Button>
+                            </div>
+
+                            <div className="clearfix" />
+                        </Col>
+                    </Row>
+
 
                     <Form className="mt-3" inline>
-                        <PlatformSelect
-                            className="mr-2"
-                            onChange={platform => this.updateForm({platform: platform})}
-                            value={this.form.platform} />
-
                         <ItemSelect
                             className="mr-2"
                             onChange={id => this.updateForm({itemId: id})}
