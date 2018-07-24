@@ -1,3 +1,7 @@
+.trading-page .trade-items-display {
+    min-height: 160px;
+}
+
 .trade-items-display .row {
     margin: -0.25em;
 }

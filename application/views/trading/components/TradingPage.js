@@ -19,7 +19,10 @@ class TradingPage extends Component {
         const { pagination, trades, tradeItems } = this.props.page;
 
         return (
-            <Container fluid>
+            <Container
+                className="trading-page"
+                fluid>
+
                 <SearchFilters />
 
                 <PaginatedList
