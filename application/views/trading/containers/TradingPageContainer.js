@@ -1,10 +1,16 @@
-import { action } from 'mobx';
+import { action, observable } from 'mobx';
+import { request } from 'libraries/request';
 import { Pagination, Section } from 'mobx/classes';
 import { provide } from 'mobx/utils';
 import { TradingPage } from 'views/trading';
 
 
 class TradingPageStore extends Section {
+
+
+    @observable pagination;
+    @observable trades = [];
+    @observable tradeItems = {};
 
     constructor() {
         super();
@@ -15,7 +21,12 @@ class TradingPageStore extends Section {
                 searchFilters: [],
                 type: 'want'
             },
-            page: 1,
+            onFetched: ({trades, tradeItems}) => {
+                this.set({
+                    trades: trades,
+                    tradeItems: tradeItems
+                });
+            },
             url: '/trades/paginate'
         });
     }
@@ -23,10 +34,10 @@ class TradingPageStore extends Section {
     @action.bound
     async initialize() {
         try {
-            await this.pagination.fetch();
+            this.pagination.fetch();
         }
-        catch (error) {
-            console.log(error);
+        catch (errors) {
+            console.log(errors);
         }
     }
 }

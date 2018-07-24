@@ -16,7 +16,7 @@ class TradingPage extends Component {
     }
 
     render() {
-        const { pagination } = this.props.page;
+        const { pagination, trades, tradeItems } = this.props.page;
 
         return (
             <Container fluid>
@@ -25,11 +25,12 @@ class TradingPage extends Component {
                 <PaginatedList
                     className="mt-5"
                     pagination={pagination}
+                    rows={trades}
                     renderer={trade => (
                         <Trade
                             key={trade.id}
                             trade={trade}
-                            tradeItems={trade.tradeItems} />
+                            tradeItems={tradeItems[trade.id]} />
                     )} />
             </Container>
         );

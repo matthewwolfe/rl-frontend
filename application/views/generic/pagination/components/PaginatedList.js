@@ -6,7 +6,7 @@ import { Loader } from 'views/generic/loader';
 import { Pagination } from 'views/generic/pagination';
 
 
-function PaginatedList({className, pagination, renderer}) {
+function PaginatedList({className, pagination, renderer, rows}) {
 
     if (pagination.loading) {
         return (<Loader />);
@@ -16,7 +16,6 @@ function PaginatedList({className, pagination, renderer}) {
         <Pagination
             className="float-right"
             page={pagination.page}
-            lastPage={pagination.lastPage}
             onChange={page => pagination.changePage(page).fetch()} />
     );
 
@@ -27,7 +26,7 @@ function PaginatedList({className, pagination, renderer}) {
             </Col>
 
             <Col md={12}>
-                {pagination.data.map(row => renderer(row))}
+                {rows.map(row => renderer(row))}
             </Col>
 
             <Col md={12}>
@@ -44,7 +43,8 @@ PaginatedList.defaultProps = {
 PaginatedList.propTypes = {
     className: PropTypes.string,
     pagination: PropTypes.object.isRequired,
-    renderer: PropTypes.func.isRequired
+    renderer: PropTypes.func.isRequired,
+    rows: PropTypes.any.isRequired
 };
 
 export default observer(PaginatedList);

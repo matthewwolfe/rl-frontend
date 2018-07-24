@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Pagination as BasePagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 
-function Pagination({className, onChange, page, lastPage}) {
+function Pagination({className, onChange, page}) {
     return (
         <BasePagination className={className}>
             {page > 1 &&
@@ -27,18 +27,6 @@ function Pagination({className, onChange, page, lastPage}) {
                     {page}
                 </PaginationLink>
             </PaginationItem>
-
-            {page < lastPage &&
-                <PaginationItem>
-                    <PaginationLink
-                        href="#"
-                        next
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onChange(lastPage);
-                        }} />
-                </PaginationItem>
-            }
         </BasePagination>
     );
 }
@@ -50,8 +38,7 @@ Pagination.defaultProps = {
 Pagination.propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    lastPage: PropTypes.number.isRequired
+    page: PropTypes.number.isRequired
 };
 
 export default Pagination;

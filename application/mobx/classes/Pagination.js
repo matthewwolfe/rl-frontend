@@ -2,73 +2,67 @@ import { action, observable } from 'mobx';
 import { request } from 'libraries/request';
 
 
-class Pagination {
-
+class Pagination
+{
+    @observable filters = {};
     @observable loading = false;
-    onFetch;
+    @observable page = 1;
+
+    onFetched = null;
     url = '';
 
-    @observable data = [];
-    @observable filters = {};
-    @observable lastPage;
-    @observable limit;
-    @observable page;
-    @observable total;
-
-    constructor({filters, url, onFetch, page, limit}) {
-        this.url = url;
-        this.page = page;
-
+    constructor({filters, page, onFetched, url})
+    {
         if (filters) {
             this.filters = Object.assign({}, filters);
         }
 
-        if (limit) {
-            this.limit = limit;
+        if (page) {
+            this.page = page;
         }
 
-        if (onFetch) {
-            this.onFetch = onFetch;
-        }
+        this.onFetched = onFetched;
+        this.url = url;
     }
 
     @action.bound
-    changePage(page) {
+    changePage(page)
+    {
         this.page = page;
         return this;
     }
 
     @action.bound
-    async fetch() {
+    async fetch()
+    {
         this.loading = true;
 
-        const response = await request.post({
-            url: this.url,
-            data: {
-                ...this.filters,
-                limit: this.limit,
-                page: this.page
-            }
-        });
+        try {
+            const response = await request.post({
+                url: this.url,
+                data: {
+                    page: this.page,
+                    ...this.filters
+                }
+            });
 
-        if (this.onFetch) {
-            this.onFetch(response);
+            this.onFetched(response);
         }
-
-        const { data, lastPage, limit, page, total } = response.pagination;
-
-        this.data = data;
-        this.lastPage = lastPage;
-        this.limit = limit;
-        this.page = page;
-        this.total = total;
-
-        this.loading = false;
+        catch (errors) {
+            throw errors;
+        }
+        finally {
+            this.loading = false;
+        }
     }
 
     @action.bound
-    updateFilters(filters) {
-        this.filters = Object.assign({}, this.filters, filters);
+    updateFilters(newFilters)
+    {
+        for (const key in newFilters) {
+            this.filters[key] = newFilters[key];
+        }
+
         return this;
     }
 }
