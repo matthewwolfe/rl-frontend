@@ -68,7 +68,7 @@ class SearchFilters extends Component {
 
     render() {
         const { pagination } = this.props.page;
-        const { searchFilters, type } = this.state;
+        const { platform, searchFilters, type } = this.state;
 
         return (
             <Card>
@@ -84,7 +84,7 @@ class SearchFilters extends Component {
                                     className="mr-2"
                                     onChange={e => this.setState({type: e.target.value})}
                                     type="select"
-                                    value={this.state.type}>
+                                    value={type}>
 
                                     <option value="want">
                                         Want
@@ -100,7 +100,7 @@ class SearchFilters extends Component {
 
                                 <PlatformSelect
                                     onChange={platform => this.setState({platform: platform})}
-                                    value={this.state.platform} />
+                                    value={platform} />
                             </div>
 
                             <div className="float-right">
@@ -109,6 +109,7 @@ class SearchFilters extends Component {
                                     color="primary"
                                     onClick={() => {
                                         pagination.updateFilters({
+                                            platform: platform,
                                             searchFilters: searchFilters,
                                             type: type
                                         }).fetch();
@@ -171,7 +172,7 @@ class SearchFilters extends Component {
                             </thead>
 
                             <tbody>
-                                {this.state.searchFilters.map((searchFilter, index) => (
+                                {searchFilters.map((searchFilter, index) => (
                                     <SearchFilter
                                         key={`search-filter-${index}`}
                                         removeSearchItem={() => this.removeSearchItem(index)}
