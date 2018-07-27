@@ -17,7 +17,8 @@ function Trade({trade, tradeItems, user}) {
                             Have Items
                         </CardTitle>
 
-                        <TradeItemsDisplay items={tradeItems.filter(tradeItem => tradeItem.type === 'have')} />
+                        <TradeItemsDisplay
+                            items={tradeItems.filter(tradeItem => tradeItem.type === 'have')} />
                     </CardBody>
                 </Card>
             </Col>

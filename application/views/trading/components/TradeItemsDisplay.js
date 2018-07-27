@@ -10,6 +10,10 @@ function TradeItemsDisplay({editable, items, onAddItem, onRemoveItem}) {
     return (
         <div className="trade-items-display">
             <Row>
+                {!editable && items.length === 0 &&
+                    <p>There are no items. Have/want offers.</p>
+                }
+
                 {range(0, editable ? 24 : items.length).map(index => (
                     <TradeItem
                         key={`trade-item-${index}`}
