@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Badge, Col } from 'reactstrap';
 import { titleCaseToDashes } from 'libraries/string';
 import { Icon } from 'views/generic/icon';
-import { TradeItemModal } from 'views/trading';
+import { SaveItemModal } from 'views/trading';
 
 
 class TradeItem extends Component {
@@ -80,7 +80,7 @@ class TradeItem extends Component {
                     }
 
                     {editable &&
-                        <TradeItemModal
+                        <SaveItemModal
                             isOpen={this.state.isOpen}
                             item={item}
                             onSave={this.props.onAddItem}

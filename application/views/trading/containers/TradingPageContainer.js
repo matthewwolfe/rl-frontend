@@ -19,7 +19,7 @@ class TradingPageStore extends Section {
             filters: {
                 platform: '',
                 searchFilters: [],
-                type: 'want'
+                type: ''
             },
             onFetched: ({trades, tradeItems}) => {
                 this.set({
@@ -37,7 +37,7 @@ class TradingPageStore extends Section {
             this.pagination.fetch();
         }
         catch (errors) {
-            console.log(errors);
+            this.setErrorResponse(errors);
         }
     }
 }

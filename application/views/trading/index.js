@@ -3,7 +3,7 @@ import TradingBuildPageContainer from './containers/TradingBuildPageContainer';
 import TradingPageContainer from './containers/TradingPageContainer';
 import MyTradesPage from './components/MyTradesPage';
 import Trade from './components/Trade';
-import TradeItemModal from './components/TradeItemModal';
+import SaveItemModal from './components/SaveItemModal';
 import SearchFilters from './components/SearchFilters';
 import SearchFilter from './components/SearchFilter';
 import TradingPage from './components/TradingPage';
@@ -19,7 +19,7 @@ export {
     TradingPageContainer,
     MyTradesPage,
     Trade,
-    TradeItemModal,
+    SaveItemModal,
     SearchFilters,
     SearchFilter,
     TradingPage,

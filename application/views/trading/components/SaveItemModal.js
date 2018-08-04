@@ -10,7 +10,7 @@ import { CrateSelect } from 'views/crates';
 import { ItemSelect } from 'views/items';
 
 
-class TradeItemModal extends Component {
+class SaveItemModal extends Component {
 
     INITIAL_STATE = {
         certificationId: 0,
@@ -144,11 +144,11 @@ class TradeItemModal extends Component {
     }
 }
 
-TradeItemModal.propTypes = {
+SaveItemModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     item: MobxPropTypes.objectOrObservableObject,
     onSave: PropTypes.func.isRequired,
     toggle: PropTypes.func.isRequired
 };
 
-export default TradeItemModal;
+export default SaveItemModal;

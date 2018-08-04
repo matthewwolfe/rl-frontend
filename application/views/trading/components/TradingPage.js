@@ -27,6 +27,9 @@ class TradingPage extends Component {
 
                 <PaginatedList
                     className="mt-5"
+                    emptyRenderer={() => (
+                        <p>There are no trades.</p>
+                    )}
                     pagination={pagination}
                     rows={trades}
                     renderer={trade => (

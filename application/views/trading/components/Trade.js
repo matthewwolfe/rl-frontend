@@ -1,8 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { Card, CardBody, CardSubtitle, CardTitle, Col, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardSubtitle, CardTitle, Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import { ConfirmModal } from 'views/generic/confirm';
+import { TextOrDefault } from 'views/generic/text';
 import { FlagTradeModal } from 'views/flags';
 import { TradeItemsDisplay } from 'views/trading';
 
@@ -37,6 +39,14 @@ function Trade({trade, tradeItems, user}) {
 
             <Col className="mt-3" md={12}>
                 <Card>
+                    <CardHeader>
+                        Last Updated: <FormattedRelative value={trade.updatedAt} />
+
+                        <span className="float-right">
+                            Posted: <FormattedRelative value={trade.createdAt} />
+                        </span>
+                    </CardHeader>
+
                     <CardBody>
                         <CardTitle className="mb-0 d-inline-block">
                             Details
@@ -86,7 +96,9 @@ function Trade({trade, tradeItems, user}) {
 
                             <Col md={10}>
                                 <Input plaintext>
-                                    {trade.description}
+                                    <TextOrDefault
+                                        defaultValue="N/A"
+                                        value={trade.description} />
                                 </Input>
                             </Col>
                         </FormGroup>

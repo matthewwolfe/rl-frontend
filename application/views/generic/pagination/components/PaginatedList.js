@@ -6,7 +6,7 @@ import { Loader } from 'views/generic/loader';
 import { Pagination } from 'views/generic/pagination';
 
 
-function PaginatedList({className, pagination, renderer, rows}) {
+function PaginatedList({className, emptyRenderer, pagination, renderer, rows}) {
 
     if (pagination.loading) {
         return (<Loader />);
@@ -21,8 +21,14 @@ function PaginatedList({className, pagination, renderer, rows}) {
 
     return (
         <Row className={className}>
+            {rows.length === 0 &&
+                <Col md={12}>
+                    {emptyRenderer()}
+                </Col>
+            }
+
             <Col md={12}>
-                {paginationComponent}
+                {rows.length > 0 && paginationComponent}
             </Col>
 
             <Col md={12}>
@@ -30,7 +36,7 @@ function PaginatedList({className, pagination, renderer, rows}) {
             </Col>
 
             <Col md={12}>
-                {paginationComponent}
+                {rows.length > 0 && paginationComponent}
             </Col>
         </Row>
     );
@@ -42,6 +48,7 @@ PaginatedList.defaultProps = {
 
 PaginatedList.propTypes = {
     className: PropTypes.string,
+    emptyRenderer: PropTypes.func.isRequired,
     pagination: PropTypes.object.isRequired,
     renderer: PropTypes.func.isRequired,
     rows: PropTypes.any.isRequired

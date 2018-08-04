@@ -19,7 +19,7 @@ const INITIAL_STATE = {
     },
     platform: '',
     searchFilters: [],
-    type: 'want'
+    type: ''
 };
 
 @inject('page')
@@ -86,6 +86,9 @@ class SearchFilters extends Component {
                                     type="select"
                                     value={type}>
 
+                                    <option value="">
+                                        All
+                                    </option>
                                     <option value="want">
                                         Want
                                     </option>
